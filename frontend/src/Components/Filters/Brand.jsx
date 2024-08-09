@@ -1,9 +1,10 @@
 import Form from 'react-bootstrap/Form'
 import React, { useState } from 'react'
 import Models from './Models.jsx'
+import data from '/src/data.json'
 
 function Brands() {
-    const brands = ["Audi", "BMW", "Ford", "Mercedes-Benz"]
+    const brands = data.brand_model.map(brandObj => brandObj.brand)
     
     const loop = brands.map((brand, index) => (
         <option value={brand} key={index}>{brand}</option>

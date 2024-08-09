@@ -1,0 +1,55 @@
+{
+    "category": [
+        "Sport Car",
+        "SUV",
+        "Luxury Car"
+    ],
+    "fuel": [
+        "Gas",
+        "Diesel",
+        "Eletro"
+    ],
+    "brand_model": [
+        {
+            "brand": "Audi",
+            "models": [
+                "A1",
+                "A2",
+                "A3",
+                "A4",
+                "A5",
+                "A6",
+                "A7",
+                "A8"
+            ]
+        },
+        {
+            "brand": "BMW",
+            "models": [
+                "i8",
+                "M2",
+                "M4",
+                "X7",
+                "X6"
+            ]
+        },
+        {
+            "brand": "Ford",
+            "models": [
+                "Mustang",
+                "F-150",
+                "Mondeo"
+            ]
+        },
+        {
+            "brand": "Mercedes-Benz",
+            "models": [
+                "Class S",
+                "GLC",
+                "SLS AMG",
+                "Class G",
+                "AMG GT"
+            ]
+        }
+    ]
+}

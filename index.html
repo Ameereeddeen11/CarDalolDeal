@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auto Bazar</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .card-horizontal {
+            display: flex;
+            flex: 1 1 auto;
+        }
+        .img-placeholder {
+            width: 200px;
+            height: 150px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Auto Bazar</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Domů</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Přidat Inzerát</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Kontakt</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <div class="row">
+            <!-- Filtrační formulář -->
+            <div class="col-md-3">
+                <h4>Filtrujte auta</h4>
+                <form>
+                    <div class="form-group">
+                        <label for="brand">Značka</label>
+                        <select id="brand" class="form-control">
+                            <option>Všechny</option>
+                            <option>Škoda</option>
+                            <option>Volkswagen</option>
+                            <option>BMW</option>
+                            <option>Ford</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="year">Rok výroby</label>
+                        <select id="year" class="form-control">
+                            <option>Všechny</option>
+                            <option>2023</option>
+                            <option>2022</option>
+                            <option>2021</option>
+                            <option>2020</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="priceRange">Cenové rozmezí</label>
+                        <select id="priceRange" class="form-control">
+                            <option>Všechny</option>
+                            <option>Do 200 000 Kč</option>
+                            <option>200 000 - 400 000 Kč</option>
+                            <option>400 000 - 600 000 Kč</option>
+                            <option>Nad 600 000 Kč</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="mileage">Najeté kilometry</label>
+                        <select id="mileage" class="form-control">
+                            <option>Všechny</option>
+                            <option>Do 50 000 km</option>
+                            <option>50 000 - 100 000 km</option>
+                            <option>100 000 - 150 000 km</option>
+                            <option>Nad 150 000 km</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Filtrovat</button>
+                </form>
+            </div>
+
+            <!-- Seznam aut -->
+            <div class="col-md-9">
+                <h1 class="mb-4">Nejnovější Auta na Prodej</h1>
+                <div class="row">
+                    <div class="col-md-12 mb-4">
+                        <div class="card card-horizontal">
+                            <div class="img-placeholder bg-secondary d-flex justify-content-center align-items-center">
+                                <p class="text-center text-white">img</p>
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">Škoda Octavia 2020</h5>
+                                <p class="card-text">Cena: 250 000 Kč</p>
+                                <p class="card-text">Najeto: 30 000 km</p>
+                                <a href="#" class="btn btn-primary">Detail</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 mb-4">
+                        <div class="card card-horizontal">
+                            <div class="img-placeholder bg-secondary d-flex justify-content-center align-items-center">
+                                <p class="text-center text-white">img</p>
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">Volkswagen Golf 2018</h5>
+                                <p class="card-text">Cena: 220 000 Kč</p>
+                                <p class="card-text">Najeto: 50 000 km</p>
+                                <a href="#" class="btn btn-primary">Detail</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 mb-4">
+                        <div class="card card-horizontal">
+                            <div class="img-placeholder bg-secondary d-flex justify-content-center align-items-center">
+                                <p class="text-center text-white">img</p>
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">BMW 320d 2019</h5>
+                                <p class="card-text">Cena: 350 000 Kč</p>
+                                <p class="card-text">Najeto: 45 000 km</p>
+                                <a href="#" class="btn btn-primary">Detail</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-dark text-white text-center py-3 mt-5">
+        <p>&copy; 2024 Auto Bazar. Všechna práva vyhrazena.</p>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

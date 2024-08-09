@@ -1,13 +1,18 @@
 import Form from 'react-bootstrap/Form'
+import data from '/src/data.json'
+
+function getModelByBrand(name) {
+    const brand = data.brand_model.find(brandObj => brandObj.brand === name)
+    return brand ? brand.models : []
+}
 
 function Models(props) {
-    const model = {
-        "Audi": ["Q5", "Q6", "Q7", "Q8"],
-        "BMW": ["i8", "M2", "M3", "M4", "M5"],
-        "Mercedes-Benz": ["S", "E", "C"]
-    }
-
     const brand = props.brand
+
+    const brandModel = getModelByBrand(brand) 
+    const loopOption = brandModel.map((options, index) => (
+        <option key={index} value={options.toLowerCase()}>{options}</option>
+    ))
 
     return (
         brand && (
@@ -15,9 +20,10 @@ function Models(props) {
                 <Form.Label>Models</Form.Label>
                 <Form.Select>
                     <option value="">Choose model</option>
-                    {model[brand].map((options, index) => (
+                    {/* {model[brand].map((options, index) => (
                         <option key={index} value={options.toLowerCase().replace(/\s/g, '-')}>{options}</option>
-                    ))}
+                    ))} */}
+                    {loopOption}
                 </Form.Select>
             </>
         )
