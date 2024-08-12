@@ -42,10 +42,10 @@ class Buyer(ModelBase):
 class Car(ModelBase):
     __tablename__ = "cars"
 
-    brand_id = Column(Integer, ForeignKey("brand.id"))
-    model_id = Column(Integer, ForeignKey("model.id"))
-    type_id = Column(Integer, ForeignKey("type.id"))
-    fuel_id = Column(Integer, ForeignKey("fuel.id"))
+    brand_id = Column(Integer, ForeignKey("brands.id"))
+    model_id = Column(Integer, ForeignKey("models.id"))
+    type_id = Column(Integer, ForeignKey("types.id"))
+    fuel_id = Column(Integer, ForeignKey("fuels.id"))
     tachometer = Column(Integer)
 
     brand = relationship("Brand", back_populates="car_brand")
