@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, Text, DateTime, ForeignKey
+from sqlalchemy import Column, Integer, String, Text, DateTime, ForeignKey, Boolean
 from sqlalchemy.orm import relationship
 from .db import Base
 
@@ -6,7 +6,7 @@ class ModelBase(Base):
     __abstract__ = True
     __allow_unmapped__ = True
 
-    id = Column(Integer, primary_key=True, index=True)
+    id = Column(Integer, primary_key=True, index=True, autoincrement=True)
 
 class User(ModelBase):
     __tablename__ = "users"
@@ -24,74 +24,104 @@ class Seller(ModelBase):
     __tablename__ = "seller"
 
     user_id = Column(Integer, ForeignKey("users.id"))
-    car_id = Column(Integer, ForeignKey("cars.id"))
-    price = Column(Integer)
+    car_id = Column(Integer, ForeignKey("cars.id"), nullable=False)
+    price = Column(Integer, nullable=False)
+    min_price = Column(Integer)
+    sold = Column(Boolean, default=False, nullable=False)
 
     user_seller = relationship("User", back_populates="seller")
-    car = relationship("Car", back_populates="car_seller")
+    car = relationship("Car", back_populates="seller")
 
 class Buyer(ModelBase):
     __tablename__ = "buyer"
 
     user_id = Column(Integer, ForeignKey("users.id"))
     car_id = Column(Integer, ForeignKey("cars.id"))
+    buyer_price = Column(Integer)
+    max_buyer_price = Column(Integer) 
 
     user_buyer = relationship("User", back_populates="buyer")
-    car = relationship("Car", back_populates="car_buyer")
+    car = relationship("Car", back_populates="buyer")
 
-class Car(ModelBase):
+class CarBase(ModelBase):
+    __abstract__ = True
+
+    name = Column(String)
+
+class Car(CarBase):
     __tablename__ = "cars"
 
-    brand_id = Column(Integer, ForeignKey("brands.id"))
-    model_id = Column(Integer, ForeignKey("models.id"))
-    type_id = Column(Integer, ForeignKey("types.id"))
-    fuel_id = Column(Integer, ForeignKey("fuels.id"))
-    tachometer = Column(Integer)
+    brand_id = Column(Integer, ForeignKey("brands.id"), nullable=False)
+    model_id = Column(Integer, ForeignKey("models.id"), nullable=False)
+    type_id = Column(Integer, ForeignKey("types.id"), nullable=False)
+    fuel_id = Column(Integer, ForeignKey("fuels.id"), nullable=False)
+    tachometer = Column(Integer, nullable=False)
+    made_at = Column(Integer, nullable=False)
+    description = Column(Text, nullable=False)
+    car_body_id = Column(Integer, ForeignKey("car_bodies.id"), nullable=False)
+    gearbox_id = Column(Integer, ForeignKey("gearboxes.id"), nullable=False)
+    power = Column(Integer, nullable=False)
+    place_of_sale = Column(String, nullable=False)
+    country_of_car = Column(Integer, ForeignKey("countries.id"), nullable=False)
+    history = Column(Text, nullable=False, nullable=False)
 
     brand = relationship("Brand", back_populates="car_brand")
     model = relationship("Model", back_populates="car_model")
     type = relationship("Type", back_populates="car_type")
     fuel = relationship("Fuel", back_populates="car_fuel")
+    car_body = relationship("CarBody", back_populates="car")
+    gearbox = relationship("Gearbox", back_populates="car_gearbox")
+    country = relationship("Country", back_populates="car_country")
     image = relationship("Image", back_populates="car_image")
+    seller = relationship("Seller", back_populates="car")
+    buyer = relationship("Buyer", back_populates="car")
 
-class Brand(ModelBase):
+class Brand(CarBase):
     __tablename__ = "brands"
 
-    name = Column(String)
-
-    car_model = relationship("Car", back_populates="brand")
+    car_brand = relationship("Car", back_populates="brand")
     brand_model = relationship("Model", back_populates="model_brand")
 
-class Model(ModelBase):
+class Model(CarBase):
     __tablename__ = "models"
 
-    name = Column(String)
-    brand_id = Column(Integer, ForeignKey("brands.id"))
+    brand_id = Column(Integer, ForeignKey("brands.id"), nullable=False)
+    type_id = Column(Integer, ForeignKey("types.id"), nullable=False)
 
     model_brand = relationship("Brand", back_populates="brand_model")
-    model_type = relationship("Type", back_populates="type_model")
+    model_type = relationship("Type", back_populates="type_model", foreign_keys=[type_id])
     car_model = relationship("Car", back_populates="model")
 
-class Type(ModelBase):
+class Type(CarBase):
     __tablename__ = "types"
 
-    name = Column(String)
-    model_id = Column(Integer, ForeignKey("models.id"))
-
-    type_model = relationship("Type", back_populates="model_type")
+    type_model = relationship("Model", back_populates="model_type")
     car_type = relationship("Car", back_populates="type")
 
-class Fuel(ModelBase):
+class Fuel(CarBase):
     __tablename__ = "fuels"
 
-    name = Column(String)
-
     car_fuel = relationship("Car", back_populates="fuel")
+
+class CarBody(CarBase):
+    __tablename__ = "car_bodies"
+
+    car = relationship("Car", back_populates="car_body")
+
+class Gearbox(CarBase):
+    __tablename__ = "gearboxes"
+
+    car_gearbox = relationship("Car", back_populates="gearbox")
 
 class Image(ModelBase):
     __tablename__ = "images"
 
-    url = Column(String)
-    car_id = Column(Integer, ForeignKey("cars.id"))
+    url = Column(String, nullable=False)
+    car_id = Column(Integer, ForeignKey("cars.id"), nullable=False)
 
     car_image = relationship("Car", back_populates="image")
+
+class Country(CarBase):
+    __tablename__ = "countries"
+
+    car_country = relationship("Car", back_populates="country")

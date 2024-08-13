@@ -7,6 +7,7 @@ from endpoints import auth, seller, buyer
 
 app = FastAPI()
 app.include_router(auth.router)
+app.include_router(seller.router)
 
 Base.metadata.create_all(bind=engine)
 

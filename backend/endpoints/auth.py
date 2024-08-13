@@ -34,8 +34,8 @@ oauth_scheme = OAuth2PasswordBearer(tokenUrl="auth/login")
 @router.post("/register", status_code=status.HTTP_201_CREATED)
 async def register_user(db: db_dependency, create_user_request: CreateUserRequest):
     create_user_model = User(
-        name=create_user_request.username,
-        fistname=create_user_request.fistname,
+        username=create_user_request.username,
+        firstname=create_user_request.fistname,
         lastname=create_user_request.lastname,
         email=create_user_request.email,
         password=pwd_context.hash(create_user_request.password)
@@ -50,7 +50,9 @@ async def login_user(db: db_dependency, form_data: Annotated[OAuth2PasswordReque
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Incorrect username or password")
     token = create_access_token(user.username, user.id, timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES))
 
-def authenticate_user(db, username: str, password: str):
+    return {'access_token': token, 'token_type': 'bearer'}
+
+def authenticate_user(db: db_dependency, username: str, password: str):
     user = db.query(User).filter(User.username == username).first()
     if not user:
         return False
