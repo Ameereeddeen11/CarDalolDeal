@@ -10,10 +10,11 @@ function App() {
   return(
     <>
       <Header name="Amir" isLoggedIn={true} />
-      <br /><br /><br />
+      <br /><br />
       <Routes>
         <Route path='/' element={<Home/>} />
       </Routes>
+      <br /><br />
       <Footer/>
     </>
   )

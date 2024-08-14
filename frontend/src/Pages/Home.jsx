@@ -1,4 +1,4 @@
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, Button } from "react-bootstrap";
 import Cards from '../Components/Cards.jsx';
 import Filters from "../Components/Filters/Filters.jsx";
 
@@ -26,6 +26,9 @@ function Home() {
                         {cards}
                     </Row>
                 </Col>
+            </Row>
+            <Row className="justify-content-center">
+                <Button variant="primary" style={{width: '25%'}}>More</Button>
             </Row>
         </Container>
     );

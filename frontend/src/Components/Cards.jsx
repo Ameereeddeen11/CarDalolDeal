@@ -6,9 +6,21 @@ function Cards(props) {
     return (
         <Card 
             key={props.id} 
-            style={{ width: '100%', height: '100%' }}
-            onMouseEnter={(e) => e.currentTarget.style.transform = "scale(1.02)"}
-            onMouseLeave={(e) => e.currentTarget.style.transform = "scale(1)"}
+            style={{ 
+                width: '100%',
+                height: '100%',
+                borderRadius: '15px',
+                transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+                overflow: 'hidden'
+            }}
+            onMouseEnter={(e) => {
+                e.currentTarget.style.transform = "scale(1.02)";
+                e.currentTarget.style.boxShadow = "0 4px 20px rgba(0,0,0,0.1"
+            }}
+            onMouseLeave={(e) => {
+                e.currentTarget.style.transform = "scale(1)";
+                e.currentTarget.style.boxShadow = "none"
+            }}
             className="mb-3 p-2"
         >
             <Row className="no-gutters">
@@ -26,19 +38,6 @@ function Cards(props) {
                 </Col>
             </Row>
         </Card>
-        // <div className="card mb-3 p-2" style={{}}>
-        //     <div className="row no-gutters">
-        //         <div className="col-md-4">
-        //             <img src={image} alt="img" className="card-img" style={{ objectFit: 'cover', width: '100%', height: '100%' }} />
-        //         </div>
-        //         <div className="col-md-8">
-        //             <div className="card-body">
-        //                 <h5 className="card-title">{props.name}</h5>
-        //                 <p className="card-text">{props.price}</p>
-        //             </div>
-        //         </div>
-        //     </div>
-        // </div>
     )
 }
 
