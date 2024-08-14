@@ -6,7 +6,6 @@ from typing import List, Annotated
 from schemas.carSchemas import *
 from schemas.sellerSchemas import *
 from .auth import get_current_user
-from validation import not_found
 import os
 
 def get_db():
@@ -29,13 +28,16 @@ async def get_seller(seller: int, db: db_dependency):
     seller = db.query(Seller).filter(Seller.id == seller).first()
     if not seller:
         raise HTTPException(status_code=404, detail="Car not found")
-    return seller
+    car = db.query(Car).filter(Car.id == seller.car_id).first()
+    image = db.query(Image).filter(Image.car_id == car.id).all()
+    return seller, car, image
 
 @router.post("/add_car")
 async def add_car( 
         db: db_dependency, 
         user: user_dependency,
         images: List[UploadFile] = File(...),
+        name: str = Form(...),
         brand: int = Form(...),
         model: int = Form(...),
         type: int = Form(...),
@@ -54,6 +56,7 @@ async def add_car(
     ):
 
     new_car = Car(
+        name = name,
         brand_id = brand,
         model_id = model,
         type_id = type,
@@ -136,7 +139,6 @@ async def update_image(
         images: List[UploadFile] = File(...)
     ):
     seller = db.query(Seller).filter(Seller.car_id == car_id, Seller.user_id == user["user_id"]).first()
-    # car = db.query(Car).filter(Car.id == seller.car_id).first()
     if not seller:
         raise HTTPException(status_code=404, detail="Car image not found")
     for image_id in list_of_removed_images:

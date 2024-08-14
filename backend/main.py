@@ -23,5 +23,5 @@ user_dependency = Annotated[User, Depends()]
 
 @app.get("/")
 async def read_root(db: db_dependency):
-    seller = db.query()
+    seller = db.query().limit(6).all()
     return seller

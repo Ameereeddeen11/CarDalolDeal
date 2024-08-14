@@ -18,6 +18,7 @@ class CreateCar(BaseModel):
     history: str
 
 class UpdateCar(BaseModel):
+    name: Optional[str]
     brand_id: Optional[int]
     model_id: Optional[int]
     type_id: Optional[int]

@@ -31,6 +31,7 @@ class Seller(ModelBase):
 
     user_seller = relationship("User", back_populates="seller")
     car = relationship("Car", back_populates="seller")
+    sold_seller = relationship("Sold", back_populates="seller")
 
 class Buyer(ModelBase):
     __tablename__ = "buyer"
@@ -42,6 +43,20 @@ class Buyer(ModelBase):
 
     user_buyer = relationship("User", back_populates="buyer")
     car = relationship("Car", back_populates="buyer")
+    sold_buyer = relationship("Sold", back_populates="buyer")
+
+class Sold(ModelBase):
+    __tablename__ = "sold"
+
+    seller_id = Column(Integer, ForeignKey("seller.id"))
+    buyer_id = Column(Integer, ForeignKey("buyer.id"))
+    sold_at = Column(DateTime, nullable=False)
+    price = Column(Integer, nullable=False)
+    seller_agreement = Column(Boolean, nullable=False)
+    buyer_agreement = Column(Boolean, nullable=False)
+
+    seller = relationship("Seller", back_populates="sold_seller")
+    buyer = relationship("Buyer", back_populates="sold_buyer")
 
 class CarBase(ModelBase):
     __abstract__ = True
@@ -63,7 +78,7 @@ class Car(CarBase):
     power = Column(Integer, nullable=False)
     place_of_sale = Column(String, nullable=False)
     country_of_car = Column(Integer, ForeignKey("countries.id"), nullable=False)
-    history = Column(Text, nullable=False, nullable=False)
+    history = Column(Text, nullable=False)
 
     brand = relationship("Brand", back_populates="car_brand")
     model = relationship("Model", back_populates="car_model")
