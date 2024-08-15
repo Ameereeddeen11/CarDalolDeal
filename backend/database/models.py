@@ -50,10 +50,10 @@ class Sold(ModelBase):
 
     seller_id = Column(Integer, ForeignKey("seller.id"))
     buyer_id = Column(Integer, ForeignKey("buyer.id"))
-    sold_at = Column(DateTime, nullable=False)
-    price = Column(Integer, nullable=False)
-    seller_agreement = Column(Boolean, nullable=False)
-    buyer_agreement = Column(Boolean, nullable=False)
+    sold_at = Column(DateTime)
+    price = Column(Integer)
+    seller_agreement = Column(Boolean)
+    buyer_agreement = Column(Boolean)
 
     seller = relationship("Seller", back_populates="sold_seller")
     buyer = relationship("Buyer", back_populates="sold_buyer")
