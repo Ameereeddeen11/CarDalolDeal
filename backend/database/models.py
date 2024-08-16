@@ -19,6 +19,7 @@ class User(ModelBase):
 
     seller = relationship("Seller", back_populates="user_seller")
     buyer = relationship("Buyer", back_populates="user_buyer")
+    favorite_user = relationship("Favorite", back_populates="user")
 
 class Seller(ModelBase):
     __tablename__ = "seller"
@@ -90,6 +91,16 @@ class Car(CarBase):
     image = relationship("Image", back_populates="car_image")
     seller = relationship("Seller", back_populates="car")
     buyer = relationship("Buyer", back_populates="car")
+    favorite_car = relationship("Favorite", back_populates="car")
+
+class Favorite(ModelBase):
+    __tablename__ = "favorites"
+
+    user_id = Column(Integer, ForeignKey("users.id"), nullable=False)
+    car_id = Column(Integer, ForeignKey("cars.id"), nullable=False)
+
+    user = relationship("User", back_populates="favorite_user")
+    car = relationship("Car", back_populates="favorite_car")
 
 class Brand(CarBase):
     __tablename__ = "brands"

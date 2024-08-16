@@ -23,6 +23,11 @@ router = APIRouter(
     tags=["seller"]
 )
 
+@router.get("/advertise")
+async def get_advertise(db: db_dependency, user: user_dependency):
+    seller = db.query(Seller).filter(Seller.user_id == user["user_id"]).all()
+    return seller
+
 @router.get("/{seller_id}")
 async def get_seller(seller: int, db: db_dependency):
     seller = db.query(Seller).filter(Seller.id == seller).first()

@@ -47,3 +47,13 @@ async def update_interest(
             setattr(buyer, key, value)
             db.commit()
     return buyer
+
+@router.delete("/delete_interest/{car_id}")
+async def delete_interest(db: db_dependency, user: user_dependency, car_id: int):
+    buyer = db.query(Buyer).filter(Buyer.car_id == car_id, Buyer.user_id == user["user_id"]).first()
+    if not buyer: 
+        raise HTTPException(status_code=404, detail="Interest not found")
+    sold = db.query(Sold).filter(Sold.buyer_id == buyer.id).first()
+    if sold:
+        db.delete(sold)
+    db.delete(buyer)
