@@ -1,17 +1,53 @@
 import { Container, Row, Col, Button } from "react-bootstrap";
 import Cards from '../Components/Cards.jsx';
 import Filters from "../Components/Filters/Filters.jsx";
+import React, { useState, useEffect } from "react";
 
-const car = [
-    { id: 1, title: 'BMW I8', text: 'My favorite car', price: '$250000', image: './image/bmwi81.jpg' },
-    { id: 2, title: 'Mercedes-Benz S class', text: 'My second favorite car', price: '$250000', image: 'bmwi81'},
-    { id: 3, title: 'BMW I8', text: 'My favorite car', price: '$250000', image: 'bmwi81' },
-];
+// const car = [
+//     { id: 1, title: 'BMW I8', text: 'My favorite car', price: '$250000', image: './image/bmwi81.jpg' },
+//     { id: 2, title: 'Mercedes-Benz S class', text: 'My second favorite car', price: '$250000', image: 'bmwi81'},
+//     { id: 3, title: 'BMW I8', text: 'My favorite car', price: '$250000', image: 'bmwi81' },
+// ];
 
 function Home() {
-    const cards = car.map((car) => (
+    const [data, setData] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await fetch('http://localhost:8000');
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                const result = await response.json();
+                setData(result);
+                } catch (error) {
+                setError(error);
+                } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchData();
+    }, []); // Empty dependency array means this useEffect runs once on mount
+
+    if (loading) return <p>Loading...</p>;
+    if (error) return <p>Error: {error.message}</p>;
+
+    const { seller, cars } = data;
+    const sellerCars = seller.map((sellerItem) => {
+        const carDetails = cars.find(car => car.id === sellerItem.car_id);
+        return {
+            ...sellerItem,
+            carDetails
+        };
+    });
+
+    const cards = sellerCars.map((car) => (
         <Col xs={12} key={car.id} className="mb-4">
-            <Cards name={car.title} text={car.text} price={car.price} image={car.image} />
+            <Cards id={car.id} brand={car.carDetails?.brand_id} model={car.carDetails.model_id} />
         </Col>
     ));
 

@@ -4,8 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 
 function Cards(props) {
     return (
-        <Card 
-            key={props.id} 
+        <Card  
             style={{ 
                 width: '100%',
                 height: '100%',
@@ -29,8 +28,8 @@ function Cards(props) {
                 </Col>
                 <Col md={8}>
                     <Card.Body>
-                        <Card.Title style={{fontSize: '1.5rem', fontWeight: 'bold'}}>{props.name}</Card.Title>
-                        <Card.Text style={{fontSize: '1.2rem', marginTop:'1rem', fontWeight: 'bold'}}><h5><span className="badge text-bg-secondary">{props.price}</span></h5></Card.Text>
+                        <Card.Title style={{fontSize: '1.5rem', fontWeight: 'bold'}}>{props.brand} {props.model}</Card.Title>
+                        {/* <Card.Text style={{fontSize: '1.2rem', marginTop:'1rem', fontWeight: 'bold'}}><span className="badge text-bg-secondary"></span></Card.Text> */}
                     </Card.Body>
                     <Card.Body>
                     <Button variant="primary" style={{fontWeight:'bold'}}>More about</Button>

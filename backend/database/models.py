@@ -93,6 +93,9 @@ class Car(CarBase):
     buyer = relationship("Buyer", back_populates="car")
     favorite_car = relationship("Favorite", back_populates="car")
 
+    def __repr__(self):
+        return self.brand
+
 class Favorite(ModelBase):
     __tablename__ = "favorites"
 
@@ -108,6 +111,12 @@ class Brand(CarBase):
     car_brand = relationship("Car", back_populates="brand")
     brand_model = relationship("Model", back_populates="model_brand")
 
+    def __init__(self, name: str):
+        self.name = name
+
+    def __repr__(self):
+        return self.name
+
 class Model(CarBase):
     __tablename__ = "models"
 
@@ -117,6 +126,12 @@ class Model(CarBase):
     model_brand = relationship("Brand", back_populates="brand_model")
     model_type = relationship("Type", back_populates="type_model", foreign_keys=[type_id])
     car_model = relationship("Car", back_populates="model")
+
+    def _init__(self, name: str):
+        self.name = name
+
+    def __repr__(self):
+        return self.name
 
 class Type(CarBase):
     __tablename__ = "types"
