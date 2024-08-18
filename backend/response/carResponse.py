@@ -1,5 +1,4 @@
 from pydantic import BaseModel
-from typing import List, Optional
 
 class BrandResponse(BaseModel):
     name: str
@@ -7,15 +6,42 @@ class BrandResponse(BaseModel):
     class Config:
         orm_mode = True
 
+class ModelResponse(BaseModel):
+    name: str
+
+    class Config:
+        orm_mode = True
+
 class CarResponse(BaseModel):
-    brand: str
-    model: str
-    year: int
+    brand: BrandResponse
+    model: ModelResponse
+    type: int
+    fuel: int
+    tachometer: int
+    made_at: int
+    car_body: int
+    gearbox: int
+    power: int
+    place_of_sale: str
+    country: int
+
+    class Config:
+        orm_mode = True
+
+class UserResponse(BaseModel):
+    id: int
+    name: str
+    email: str
+
+    class Config:
+        orm_mode = True
+
+class SellerResponse(BaseModel):
+    id: int
     price: int
-    color: str
-    km: int
-    description: str
-    image: str
+    min_price: int
+    sold: bool
+    car_id: CarResponse
 
     class Config:
         orm_mode = True

@@ -6,6 +6,7 @@ from typing import List, Annotated
 from schemas.carSchemas import *
 from schemas.sellerSchemas import *
 from .auth import get_current_user
+from response.carResponse import CarResponse
 import os
 
 def get_db():
@@ -29,8 +30,8 @@ async def get_advertise(db: db_dependency, user: user_dependency):
     return seller
 
 @router.get("/{seller_id}")
-async def get_seller(seller: int, db: db_dependency):
-    seller = db.query(Seller).filter(Seller.id == seller).first()
+async def get_seller(seller_id: int, db: db_dependency):
+    seller = db.query(Seller).filter(Seller.id == seller_id).first()
     if not seller:
         raise HTTPException(status_code=404, detail="Car not found")
     car = db.query(Car).filter(Car.id == seller.car_id).first()

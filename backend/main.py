@@ -9,8 +9,8 @@ from starlette.middleware.base import BaseHTTPMiddleware, RequestResponseEndpoin
 from collections import defaultdict
 from fastapi.middleware.cors import CORSMiddleware
 import time
-from response.carResponse import CarResponse
-from typing import List
+from response.carResponse import CarResponse, SellerResponse
+from typing import List, Any
 
 app = FastAPI()
 
@@ -75,8 +75,39 @@ def get_db():
 db_dependency = Annotated[Session, Depends(get_db)]
 user_dependency = Annotated[User, Depends(get_current_user)]
 
-@app.get("/", response_model=CarResponse)
+@app.get("/")
 async def read_root(db: db_dependency):
     seller = db.query(Seller).limit(6).all()
-    cars = db.query(Car).filter(Car.id.in_([s.car_id for s in seller])).all()
-    return seller, cars
+    offer = []
+    for s in seller:
+        user = db.query(User).filter(User.id == s.user_id).first() 
+        users = {
+            "id": user.id,
+            "name": user.username,
+            "email": user.email
+        }
+        car = db.query(Car).filter(Car.id == s.car_id).first()
+        cars = {
+            "id": car.id,
+            "brand": car.brand.name,
+            "model": car.model.name,
+            "type": car.type.name,
+            "fuel": car.fuel.name,
+            "tachometer": car.tachometer,
+            "made_at": car.made_at,
+            "description": car.description,
+            "car_body": car.car_body.name,
+            "gearbox": car.gearbox.name,
+            "power": car.power,
+            "place_of_sale": car.place_of_sale,
+            "country": car.country.name,
+            "history": car.history
+        }
+        offer.append({
+            "user": users,
+            "car": cars,
+            "price": s.price,
+            "min_price": s.min_price,
+            "sold": s.sold
+        })
+    return offer
