@@ -36,18 +36,9 @@ function Home() {
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Error: {error.message}</p>;
 
-    const { seller, cars } = data;
-    const sellerCars = seller.map((sellerItem) => {
-        const carDetails = cars.find(car => car.id === sellerItem.car_id);
-        return {
-            ...sellerItem,
-            carDetails
-        };
-    });
-
-    const cards = sellerCars.map((car) => (
-        <Col xs={12} key={car.id} className="mb-4">
-            <Cards id={car.id} brand={car.carDetails?.brand_id} model={car.carDetails.model_id} />
+    const cards = data.map((cars) => (
+        <Col xs={12} key={cars.id} className="mb-4">
+            <Cards id={cars.id} brand={cars.car.brand} model={cars.car.model} description={cars.car.description} price={cars.price} />
         </Col>
     ));
 

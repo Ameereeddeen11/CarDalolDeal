@@ -29,7 +29,8 @@ function Cards(props) {
                 <Col md={8}>
                     <Card.Body>
                         <Card.Title style={{fontSize: '1.5rem', fontWeight: 'bold'}}>{props.brand} {props.model}</Card.Title>
-                        {/* <Card.Text style={{fontSize: '1.2rem', marginTop:'1rem', fontWeight: 'bold'}}><span className="badge text-bg-secondary"></span></Card.Text> */}
+                        <Card.Text>{props.description}</Card.Text>
+                        <Card.Text><span className="badge text-bg-secondary">Price: {props.price}</span></Card.Text>
                     </Card.Body>
                     <Card.Body>
                     <Button variant="primary" style={{fontWeight:'bold'}}>More about</Button>
