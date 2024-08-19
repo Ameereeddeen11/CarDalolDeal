@@ -23,13 +23,12 @@ function Home() {
                 }
                 const result = await response.json();
                 setData(result);
-                } catch (error) {
+            } catch (error) {
                 setError(error);
-                } finally {
+            } finally {
                 setLoading(false);
             }
         };
-
         fetchData();
     }, []); // Empty dependency array means this useEffect runs once on mount
 

@@ -1,6 +1,7 @@
 import { Row, Col, Card, Button } from "react-bootstrap"
 import image from './image/bmwi81.jpg'
 import 'bootstrap/dist/css/bootstrap.min.css'
+import { Link } from 'react-router-dom'
 
 function Cards(props) {
     return (
@@ -33,7 +34,7 @@ function Cards(props) {
                         <Card.Text><span className="badge text-bg-secondary">Price: {props.price}</span></Card.Text>
                     </Card.Body>
                     <Card.Body>
-                    <Button variant="primary" style={{fontWeight:'bold'}}>More about</Button>
+                    <Link to="/seller/"><Button variant="primary" style={{fontWeight:'bold'}}>More about</Button></Link>
                     </Card.Body>
                 </Col>
             </Row>
