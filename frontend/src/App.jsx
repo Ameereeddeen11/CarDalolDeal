@@ -17,8 +17,8 @@ function App() {
       <Header name="Amir" isLoggedIn={true} />
       <br /><br />
       <Routes>
-        <Route path='/' element={<Home/>} />
-        <Route path={urls.seller} element={<Offer id={1} />} />
+        <Route exact path='/' element={<Home/>} />
+        <Route path="/seller/:id" element={<Offer/>} />
       </Routes>
       <br /><br />
       <Footer/>

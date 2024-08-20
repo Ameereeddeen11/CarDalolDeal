@@ -1,9 +1,15 @@
 import { Row, Col, Card, Button } from "react-bootstrap"
 import image from './image/bmwi81.jpg'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 function Cards(props) {
+    const navigate = useNavigate();
+
+    const handleClink = (id) => {
+        navigate(`/seller/${id}`)
+    }
+    const id = props.id
     return (
         <Card  
             style={{ 
@@ -22,6 +28,7 @@ function Cards(props) {
                 e.currentTarget.style.boxShadow = "none"
             }}
             className="mb-3 p-2"
+            key={props.id}
         >
             <Row className="no-gutters">
                 <Col md={4}>
@@ -34,7 +41,7 @@ function Cards(props) {
                         <Card.Text><span className="badge text-bg-secondary">Price: {props.price}</span></Card.Text>
                     </Card.Body>
                     <Card.Body>
-                    <Link to="/seller/"><Button variant="primary" style={{fontWeight:'bold'}}>More about</Button></Link>
+                    <Button variant="primary" style={{fontWeight:'bold'}} onClick={() => handleClink(id)}>More about</Button>
                     </Card.Body>
                 </Col>
             </Row>

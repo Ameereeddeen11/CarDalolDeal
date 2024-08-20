@@ -106,6 +106,7 @@ async def read_root(db: db_dependency):
         offer.append({
             "user": users,
             "car": cars,
+            "id": s.id,
             "price": s.price,
             "min_price": s.min_price,
             "sold": s.sold

@@ -1,15 +1,16 @@
 import { Container, Row, Col, Button } from "react-bootstrap";
 import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 
-function Offer(props) {
+function Offer() {
+    const { id } = useParams();
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const url = 'http://localhost:8000/seller/1';
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch(url);
+                const response = await fetch(`http://localhost:8000/seller/${id}`);
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
@@ -30,7 +31,7 @@ function Offer(props) {
         <Container className="mt-5">
             <Row>
                 <Col xs={12} md={4} className="mb-4">
-                    {data}
+                    <h1>hi</h1>
                 </Col>
             </Row>
         </Container>
