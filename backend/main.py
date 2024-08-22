@@ -9,7 +9,7 @@ from starlette.middleware.base import BaseHTTPMiddleware, RequestResponseEndpoin
 from collections import defaultdict
 from fastapi.middleware.cors import CORSMiddleware
 import time
-from response.carResponse import CarResponse, SellerResponse
+from response.sellerResponse import SellerReponse
 from typing import List, Any
 
 app = FastAPI()
@@ -75,20 +75,18 @@ def get_db():
 db_dependency = Annotated[Session, Depends(get_db)]
 user_dependency = Annotated[User, Depends(get_current_user)]
 
-@app.get("/")
+@app.get("/", response_model=list[SellerReponse])
 async def read_root(db: db_dependency):
     seller = db.query(Seller).limit(6).all()
     offer = []
     for s in seller:
         user = db.query(User).filter(User.id == s.user_id).first() 
         users = {
-            "id": user.id,
             "name": user.username,
             "email": user.email
         }
         car = db.query(Car).filter(Car.id == s.car_id).first()
         cars = {
-            "id": car.id,
             "brand": car.brand.name,
             "model": car.model.name,
             "type": car.type.name,
@@ -106,7 +104,6 @@ async def read_root(db: db_dependency):
         offer.append({
             "user": users,
             "car": cars,
-            "id": s.id,
             "price": s.price,
             "min_price": s.min_price,
             "sold": s.sold
