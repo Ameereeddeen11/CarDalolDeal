@@ -11,3 +11,5 @@ python-multipart
 fastapi-mail
 pydantic
 pillow
+httpx
+pytest
