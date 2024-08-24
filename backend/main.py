@@ -75,7 +75,7 @@ def get_db():
 db_dependency = Annotated[Session, Depends(get_db)]
 user_dependency = Annotated[User, Depends(get_current_user)]
 
-@app.get("/", response_model=list[SellerReponse])
+@app.get("/", response_model=list[SellerReponse], status_code=200)
 async def read_root(db: db_dependency):
     seller = db.query(Seller).limit(6).all()
     offer = []
