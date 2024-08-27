@@ -36,14 +36,14 @@ jobs:
       - name: Run tests
         run: |
           python -m pytest
-
+          
     services:
       postgres:
         image: postgres:latest
         env:
-          POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
-          POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
-          POSTGRES_DB: ${{ secrets.POSTGRES_DB }}
+          POSTGRES_USER: root
+          POSTGRES_PASSWORD: bUeN0
+          POSTGRES_DB: cardb
         ports:
           - 5432:5432
         options: >-
