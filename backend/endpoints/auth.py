@@ -43,7 +43,9 @@ async def register_user(db: db_dependency, create_user_request: CreateUserReques
     db.add(create_user_model)
     db.commit()
 
-@router.post("/login", response_model=Token)
+    return create_user_request
+
+@router.post("/login", response_model=Token, status_code=status.HTTP_200_OK)
 async def login_user(db: db_dependency, form_data: Annotated[OAuth2PasswordRequestForm, Depends()]):
     user = authenticate_user(db, form_data.username, form_data.password)
     if not user:
