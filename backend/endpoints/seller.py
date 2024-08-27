@@ -38,7 +38,7 @@ async def get_seller(seller_id: int, db: db_dependency):
     image = db.query(Image).filter(Image.car_id == car.id).all()
     return seller, car, image
 
-@router.post("/add_car")
+@router.post("/add_car", status_code=201)
 async def add_car( 
         db: db_dependency, 
         user: user_dependency,

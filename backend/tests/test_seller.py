@@ -1,46 +1,63 @@
 from main import app
 from fastapi.testclient import TestClient
+from .test_auth import login_user
+import io
 
 client = TestClient(app)
 
-data = {
+datas = {
         "name": "hi",
-        "brand_id": 1,
-        "model_id": 1,
-        "type_id": 1,
-        "fuel_id": 1,
+        "brand": 1,
+        "model": 1,
+        "type": 1,
+        "fuel": 1,
         "tachometer": 1,
         "made_at": 1,
         "description": "hi",
-        "car_body_id": 1,
-        "gearbox_id": 1,
+        "car_body": 1,
+        "gearbox": 1,
         "power": 1,
         "place_of_sale": "hi",
         "country_of_car": 1,
         "history": "hi",
         "price": 1,
-        "min_price": 1
+        "min_price": 1,
+        
     }
 
-# def test_create_seller(test_seller):
-#     response = client.post("/seller/add_car", data=test_seller)
-#     assert response.status_code == 200
-#     assert response.json() == test_seller
+user = {
+    "username": "test",
+    "password": "bUeN0"
+}
 
-# def test_read_seller():
-#     response = client.get("/seller/1")
-#     assert response.status_code == 200
-
-# def test_update_test():
-#     response = client.put("/seller/1")
-#     assert response.status_code == 200
-#     assert response.json() == {
-#         "sold": True,
-#         "price": 1,
-#         "min_price": 1
-#     }
-
-# def test_delete_seller():
-#     response = client.delete("/seller/1")
-#     assert response.status_code == 200
-#     assert response.json() == {"message": "Car deleted successfully"}
+def test_create_seller():
+    response = client.post(
+        "/seller/add_car/", 
+        headers={"Authorization": f"Bearer {login_user()}"},
+        data = {
+            "name": "hi",
+            "brand": 1,
+            "model": 1,
+            "type": 1,
+            "fuel": 1,
+            "tachometer": 1,
+            "made_at": 1,
+            "description": "hi",
+            "car_body": 1,
+            "gearbox": 1,
+            "power": 1,
+            "place_of_sale": "hi",
+            "country_of_car": 1,
+            "history": "hi",
+            "price": 1,
+            "min_price": 1
+        },
+        files={
+            "images": (
+                "test_image.jpg",
+                io.BytesIO(b"fake image data"),
+                "image/jpeg"
+            )
+        }
+    )
+    assert response.status_code == 201
