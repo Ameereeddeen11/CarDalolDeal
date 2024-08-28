@@ -25,11 +25,6 @@ datas = {
         
     }
 
-user = {
-    "username": "test",
-    "password": "bUeN0"
-}
-
 def test_create_seller():
     response = client.post(
         "/seller/add_car/", 
@@ -61,3 +56,30 @@ def test_create_seller():
         }
     )
     assert response.status_code == 201
+
+def test_read_seller():
+    response = client.get(
+        "/seller/advertise/",
+        headers={"Authorization": f"Bearer {login_user()}"}
+    )
+    assert response.status_code == 200
+    assert response.json() == [
+        {
+            "name": "hi",
+            "brand": "BMW",
+            "model": "i8",
+            "type": "Coupe",
+            "fuel": "Benzin",
+            "tachometer": "100",
+            "made_at": "2024",
+            "description": "hi",
+            "car_body": "Sedan",
+            "gearbox": "Manuel",
+            "power": "100",
+            "place_of_sale": "hi",
+            "country_of_car": "Germany",
+            "history": "hi",
+            "price": "1000000",
+            "min_price": "750000"
+        }
+    ]

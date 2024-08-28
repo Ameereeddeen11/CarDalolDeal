@@ -24,12 +24,12 @@ router = APIRouter(
     tags=["seller"]
 )
 
-@router.get("/advertise")
+@router.get("/advertise", status_code=200)
 async def get_advertise(db: db_dependency, user: user_dependency):
     seller = db.query(Seller).filter(Seller.user_id == user["user_id"]).all()
     return seller
 
-@router.get("/{seller_id}")
+@router.get("/{seller_id}", status_code=200)
 async def get_seller(seller_id: int, db: db_dependency):
     seller = db.query(Seller).filter(Seller.id == seller_id).first()
     if not seller:
