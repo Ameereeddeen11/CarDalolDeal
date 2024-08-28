@@ -1,5 +1,5 @@
 from models import *
-from db import SessionLocal
+from .db import SessionLocal
 
 def seed():
     db = SessionLocal()
