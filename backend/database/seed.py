@@ -1,4 +1,4 @@
-from .models import *
+from .models import Brand, Model, Type, CarBody, Gearbox, Country, Fuel
 from .db import SessionLocal
 
 def seed():
