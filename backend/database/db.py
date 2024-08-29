@@ -8,6 +8,6 @@ load_dotenv()
 
 DB_URL = "postgresql://root:bUeN0@localhost:5432/cardb"
 
-engine = create_engine(DB_URL, connect_args={"check_same_thread": False})
+engine = create_engine(DB_URL)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base = declarative_base()
