@@ -27,9 +27,7 @@ def test_read_main():
     # ]
     
 def test_read_seller():
-    response = client.get(
-        "/seller/1"
-    )
+    response = client.get("/seller/1")
     assert response.status_code == 200
     # assert response.json() == [
     #     {
