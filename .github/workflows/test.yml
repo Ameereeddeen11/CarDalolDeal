@@ -35,7 +35,7 @@ jobs:
 
       - name: Set up data base
         run: |
-          python create_db.py
+          python create_data.py
       
       - name: Run tests
         run: |
