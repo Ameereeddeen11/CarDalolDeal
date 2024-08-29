@@ -37,10 +37,6 @@ jobs:
         run: |
           alembic upgrade head
 
-      - name: Seed database
-        run: |
-          python database/seed.py
-        
       - name: Run tests
         run: |
           python -m pytest
