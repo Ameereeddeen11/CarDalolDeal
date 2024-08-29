@@ -28,6 +28,10 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
 
+      - name: Create directory for images
+        run: |
+          mkdir -p ./backend/images
+
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
