@@ -1,4 +1,4 @@
-from .test_main import client
+from .test_3_main import client
 
 def test_user_registration():
     response = client.post(
