@@ -1,5 +1,9 @@
-from .test_1_auth import login_user, client
+from fastapi.testclient import TestClient
+from .test_1_auth import login_user
 import io
+from main import app
+
+client = TestClient(app)
 
 datas = {
         "name": "hi",
