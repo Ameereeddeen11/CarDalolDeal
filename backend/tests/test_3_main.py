@@ -9,3 +9,10 @@ def test_read_main():
     assert response.status_code == 200
     assert response.json() == datas
 
+def test_delete_seller():
+    response = client.delete(
+        "/seller/1",
+        headers={"Authorization": f"bearer {login_user()}"}
+    )
+    assert response.status_code == 200
+    assert response.json() == {"message": "Car deleted successfully"}
