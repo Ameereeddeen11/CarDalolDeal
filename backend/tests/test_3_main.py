@@ -11,7 +11,7 @@ def test_read_main():
 
 def test_delete_seller():
     response = client.delete(
-        "/seller/1",
+        "/seller/delete/car/1/",
         headers={"Authorization": f"bearer {login_user()}"}
     )
     assert response.status_code == 200
