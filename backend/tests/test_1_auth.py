@@ -1,4 +1,7 @@
-from .test_main import client
+from fastapi.testclient import TestClient
+from main import app
+
+client = TestClient(app)
 
 def test_user_registration():
     response = client.post(
