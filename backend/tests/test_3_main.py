@@ -9,6 +9,10 @@ def test_read_main():
     assert response.status_code == 200
     assert response.json() == {
         "id": 1,
+        "user": {
+            "username": "test",
+            "email": "test@test.com"
+        },
         "name": "hi",
         "brand": 1,
         "model": 1,
