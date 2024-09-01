@@ -13,22 +13,24 @@ def test_read_main():
             "name": "test",
             "email": "test@test.com"
         },
-        "name": "hi",
-        "brand": 1,
-        "model": 1,
-        "type": 1,
-        "fuel": 1,
-        "tachometer": 50,
-        "made_at": 2022,
-        "description": "hi",
-        "car_body": 1,
-        "gearbox": 1,
-        "power": 588,
-        "place_of_sale": "hi",
-        "country_of_car": 1,
-        "history": "hi",
         "price": 9700000,
-        "min_price": 9500000
+        "min_price": 9500000,
+        "sold": False,
+        "car": {
+            "brand": 1,
+            "model": 1,
+            "type": 1,
+            "fuel": 1,
+            "tachometer": 50,
+            "made_at": 2022,
+            "description": "hi",
+            "car_body": 1,
+            "gearbox": 1,
+            "power": 588,
+            "place_of_sale": "hi",
+            "country_of_car": 1,
+            "history": "hi",
+        }
     }
 
 def test_delete_seller():
