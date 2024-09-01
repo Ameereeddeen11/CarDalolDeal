@@ -10,7 +10,7 @@ def test_read_main():
     assert response.json() == {
         "id": 1,
         "user": {
-            "username": "test",
+            "name": "test",
             "email": "test@test.com"
         },
         "name": "hi",
