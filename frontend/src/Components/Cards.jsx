@@ -5,11 +5,10 @@ import { useNavigate } from 'react-router-dom'
 
 function Cards(props) {
     const navigate = useNavigate();
-
-    const handleClink = (id) => {
-        navigate(`/seller/${id}`)
+    // const id = props.id
+    const handleClink = () => {
+        navigate(`/seller/${props.id}`)
     }
-    const id = props.id
     return (
         <Card  
             style={{ 
@@ -41,7 +40,7 @@ function Cards(props) {
                         <Card.Text><span className="badge text-bg-secondary">Price: {props.price}</span></Card.Text>
                     </Card.Body>
                     <Card.Body>
-                    <Button variant="primary" style={{fontWeight:'bold'}} onClick={() => handleClink(id)}>More about</Button>
+                    <Button variant="primary" style={{fontWeight:'bold'}} onClick={() => handleClink()}>More about</Button>
                     </Card.Body>
                 </Col>
             </Row>
