@@ -94,7 +94,6 @@ async def read_root(db: db_dependency):
             "tachometer": car.tachometer,
             "made_at": car.made_at,
             "description": car.description,
-            "description": car.description,
             "car_body": car.car_body.name,
             "gearbox": car.gearbox.name,
             "power": car.power,
