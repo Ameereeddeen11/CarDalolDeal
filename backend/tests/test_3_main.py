@@ -28,7 +28,7 @@ def test_read_main():
             "gearbox": "Automatic",
             "power": 588,
             "place_of_sale": "hi",
-            "country_of_car": "Germany",
+            "country": "Germany",
             "history": "hi",
         }
     }]
