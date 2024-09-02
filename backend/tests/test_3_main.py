@@ -7,7 +7,7 @@ client = TestClient(app)
 def test_read_main():
     response = client.get("/")
     assert response.status_code == 200
-    assert response.json() == [{
+    assert response.json() == {
         "id": 1,
         "user": {
             "name": "test",
@@ -31,7 +31,7 @@ def test_read_main():
             "country_of_car": "Germany",
             "history": "hi",
         }
-    }]
+    }
 
 def test_delete_seller():
     response = client.delete(
