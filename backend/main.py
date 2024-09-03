@@ -101,12 +101,17 @@ async def read_root(db: db_dependency):
             "country": car.country.name,
             "history": car.history
         }
+        images = db.query(Image).filter(Image.car_id == s.car_id).all()
+        image = []
+        for i in images:
+            image.append(i.url)
         offer.append({
             "id": s.id,
             "user": users,
             "car": cars,
             "price": s.price,
             "min_price": s.min_price,
-            "sold": s.sold
+            "sold": s.sold,
+            "images": image
         })
     return offer

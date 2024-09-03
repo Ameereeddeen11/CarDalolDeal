@@ -19,8 +19,7 @@ def test_user_registration():
         "username": "test",
         "fistname": "testfirstname",
         "lastname": "testlastname",
-        "email": "test@test.com",
-        "password": "bUeN0"
+        "email": "test@test.com"
     }
 
 def test_user_login():

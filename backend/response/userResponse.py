@@ -1,7 +1,9 @@
 from pydantic import BaseModel
 
 class UserResponse(BaseModel):
-    name: str
+    username: str
+    firstname: str
+    lastname: str
     email: str
 
     class Config:
