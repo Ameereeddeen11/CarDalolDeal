@@ -29,6 +29,8 @@ get_data = [
         'id': 1, 
         'user': {
             'name': 'test', 
+            'firstname': 'testfirstname',
+            'lastname': 'testlastname',
             'email': 'test@test.com'
         }, 
         'price': 9700000, 
