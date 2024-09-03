@@ -1,4 +1,8 @@
-from .test_2_seller import get_data, login_user, client
+from fastapi.testclient import TestClient
+from .test_2_seller import get_data, login_user
+from main import app
+
+client = TestClient(app)
 
 def test_read_main():
     response = client.get("/")
