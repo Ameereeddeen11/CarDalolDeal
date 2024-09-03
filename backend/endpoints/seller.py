@@ -8,6 +8,8 @@ from schemas.sellerSchemas import *
 from .auth import get_current_user
 from response.carResponse import CarResponse
 import os
+from response.sellerResponse import SellerReponse
+from response.userResponse import UserResponse
 
 def get_db():
     db = SessionLocal()
@@ -27,7 +29,39 @@ router = APIRouter(
 @router.get("/advertise", status_code=200)
 async def get_advertise(db: db_dependency, user: user_dependency):
     seller = db.query(Seller).filter(Seller.user_id == user["user_id"]).all()
-    return seller
+    car = db.query(Car).filter(Car.id == seller.car_id).first()
+    image = db.query(Image).filter(Image.car_id == car.id).all()
+    return SellerReponse(
+        id = seller.id,
+        user = UserResponse(
+            id = seller.user.id,
+            username = seller.user.username,
+            firstname = seller.user.firstname,
+            lastname = seller.user.lastname,
+            email = seller.user.email
+        ),
+        car = CarResponse(
+            id = car.id,
+            name = car.name,
+            brand = car.brand.name,
+            model = car.model.name,
+            type = car.type.name,
+            fuel = car.fuel.name,
+            tachometer = car.tachometer,
+            made_at = car.made_at,
+            description = car.description,
+            car_body = car.car_body.name,
+            gearbox = car.gearbox.name,
+            power = car.power,
+            place_of_sale = car.place_of_sale,
+            country = car.country.name,
+            history = car.history
+        ),
+        price = seller.price,
+        min_price = seller.min_price,
+        sold = seller.sold,
+        images = [i.url for i in image]
+    )
 
 @router.get("/{seller_id}", status_code=200)
 async def get_seller(seller_id: int, db: db_dependency):
@@ -36,7 +70,37 @@ async def get_seller(seller_id: int, db: db_dependency):
         raise HTTPException(status_code=404, detail="Car not found")
     car = db.query(Car).filter(Car.id == seller.car_id).first()
     image = db.query(Image).filter(Image.car_id == car.id).all()
-    return seller, car, image
+    return SellerReponse(
+        id = seller.id,
+        user = UserResponse(
+            id = seller.user.id,
+            username = seller.user.username,
+            firstname = seller.user.firstname,
+            lastname = seller.user.lastname,
+            email = seller.user.email
+        ),
+        car = CarResponse(
+            id = car.id,
+            name = car.name,
+            brand = car.brand.name,
+            model = car.model.name,
+            type = car.type.name,
+            fuel = car.fuel.name,
+            tachometer = car.tachometer,
+            made_at = car.made_at,
+            description = car.description,
+            car_body = car.car_body.name,
+            gearbox = car.gearbox.name,
+            power = car.power,
+            place_of_sale = car.place_of_sale,
+            country = car.country.name,
+            history = car.history
+        ),
+        price = seller.price,
+        min_price = seller.min_price,
+        sold = seller.sold,
+        images = [i.url for i in image]
+    )
 
 @router.post("/add_car", status_code=201)
 async def add_car( 

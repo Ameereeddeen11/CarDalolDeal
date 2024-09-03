@@ -28,6 +28,7 @@ get_data = [
     {
         'id': 1, 
         'user': {
+            'id': 1,
             'name': 'test', 
             'firstname': 'testfirstname',
             'lastname': 'testlastname',
@@ -37,6 +38,7 @@ get_data = [
         'min_price': 9500000, 
         'sold': False, 
         'car': {
+            'id': 1,
             'brand': 'Mercedes', 
             'model': 'Class G', 
             'type': 'Personal', 
