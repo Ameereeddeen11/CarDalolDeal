@@ -45,6 +45,7 @@ get_data = [
             'fuel': 'Diesel', 
             'tachometer': 50, 
             'made_at': 2022, 
+            'description': 'hi',
             'car_body': 'SUV', 
             'gearbox': 'Automatic', 
             'power': 588, 
