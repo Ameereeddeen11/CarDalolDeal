@@ -78,7 +78,7 @@ def test_read_seller():
     assert response.status_code == 200
     assert response.json() == get_data
 
-def test_read_seller():
+def test_read_advertise_seller():
     response = client.get(
         "/seller/advertise/",
         headers={"Authorization": f"Bearer {login_user()}"}
