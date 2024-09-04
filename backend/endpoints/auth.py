@@ -9,6 +9,7 @@ from passlib.context import CryptContext
 from jose import JWTError, jwt
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 from schemas.userSchemas import CreateUserRequest, Token
+from response.userResponse import UserLoginResponse
 
 router = APIRouter(
     prefix="/auth",
@@ -31,11 +32,11 @@ ACCESS_TOKEN_EXPIRE_MINUTES = 60
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 oauth_scheme = OAuth2PasswordBearer(tokenUrl="auth/login")
 
-@router.post("/register", status_code=status.HTTP_201_CREATED)
+@router.post("/register", status_code=status.HTTP_201_CREATED, response_model=UserLoginResponse)
 async def register_user(db: db_dependency, create_user_request: CreateUserRequest):
     create_user_model = User(
         username=create_user_request.username,
-        firstname=create_user_request.fistname,
+        firstname=create_user_request.firstname,
         lastname=create_user_request.lastname,
         email=create_user_request.email,
         password=pwd_context.hash(create_user_request.password)
@@ -43,7 +44,10 @@ async def register_user(db: db_dependency, create_user_request: CreateUserReques
     db.add(create_user_model)
     db.commit()
 
-    return create_user_request
+    return {
+        "username": create_user_request.username,
+        "email": create_user_request.email
+    }
 
 @router.post("/login", response_model=Token, status_code=status.HTTP_200_OK)
 async def login_user(db: db_dependency, form_data: Annotated[OAuth2PasswordRequestForm, Depends()]):

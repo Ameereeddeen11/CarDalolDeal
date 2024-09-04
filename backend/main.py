@@ -75,18 +75,23 @@ def get_db():
 db_dependency = Annotated[Session, Depends(get_db)]
 user_dependency = Annotated[User, Depends(get_current_user)]
 
-@app.get("/", response_model=list[SellerReponse], status_code=200)
+@app.get("/", status_code=200)
 async def read_root(db: db_dependency):
     seller = db.query(Seller).limit(6).all()
     offer = []
     for s in seller:
         user = db.query(User).filter(User.id == s.user_id).first() 
         users = {
-            "name": user.username,
+            "id": user.id,
+            "username": user.username,
+            "firstname": user.firstname,
+            "lastname": user.lastname,
             "email": user.email
         }
         car = db.query(Car).filter(Car.id == s.car_id).first()
         cars = {
+            "id": car.id,
+            "name": car.name,
             "brand": car.brand.name,
             "model": car.model.name,
             "type": car.type.name,
@@ -101,12 +106,17 @@ async def read_root(db: db_dependency):
             "country": car.country.name,
             "history": car.history
         }
+        image = db.query(Image).filter(Image.car_id == car.id).all()
+        images = []
+        for i in image:
+            images.append(i.url)
         offer.append({
             "id": s.id,
             "user": users,
             "car": cars,
             "price": s.price,
             "min_price": s.min_price,
-            "sold": s.sold
+            "sold": s.sold,
+            "images": images
         })
     return offer

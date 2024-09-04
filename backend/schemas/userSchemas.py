@@ -3,7 +3,7 @@ from typing import Optional
 
 class CreateUserRequest(BaseModel):
     username: str
-    fistname: Optional[str]
+    firstname: Optional[str]
     lastname: Optional[str]
     email: str
     password: str

@@ -9,6 +9,7 @@ class SellerReponse(BaseModel):
     min_price: int
     sold: bool
     car: CarResponse
+    images: list[str]
 
     class Config:
         orm_mode = True

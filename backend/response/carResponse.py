@@ -7,6 +7,8 @@ class BaseResponse(BaseModel):
         orm_mode = True
 
 class CarResponse(BaseModel):
+    id: int
+    name: str
     brand: str
     model: str
     type: str
