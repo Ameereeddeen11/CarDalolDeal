@@ -70,7 +70,7 @@ async def get_seller(seller_id: int, db: db_dependency):
         raise HTTPException(status_code=404, detail="Car not found")
     car = db.query(Car).filter(Car.id == seller.car_id).first()
     image = db.query(Image).filter(Image.car_id == car.id).all()
-    return {
+    return [{
         "id": seller.id,
         "user": {
             "id": seller.user_id.id,
@@ -100,7 +100,7 @@ async def get_seller(seller_id: int, db: db_dependency):
             "history": car.history
         },
         "images": [i.url for i in image],
-    }
+    }]
 
 @router.post("/add_car", status_code=201)
 async def add_car( 

@@ -106,7 +106,7 @@ async def read_root(db: db_dependency):
         image = db.query(Image).filter(Image.car_id == car.id).all()
         images = []
         for i in image:
-            image.append(i.url)
+            images.append(i.url)
         offer.append({
             "id": s.id,
             "user": users,

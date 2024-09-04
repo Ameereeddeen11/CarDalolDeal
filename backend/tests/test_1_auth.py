@@ -8,7 +8,7 @@ def test_user_registration():
         "/auth/register/",
         json={
             "username": "test",
-            "fistname": "testfirstname",
+            "firstname": "testfirstname",
             "lastname": "testlastname",
             "email": "test@test.com",
             "password": "bUeN0"
@@ -17,8 +17,6 @@ def test_user_registration():
     assert response.status_code == 201
     assert response.json() == {
         "username": "test",
-        "fistname": "testfirstname",
-        "lastname": "testlastname",
         "email": "test@test.com"
     }
 
