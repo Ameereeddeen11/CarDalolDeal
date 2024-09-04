@@ -83,7 +83,7 @@ async def read_root(db: db_dependency):
         user = db.query(User).filter(User.id == s.user_id).first() 
         users = {
             "id": user.id,
-            "name": user.username,
+            "username": user.username,
             "firstname": user.firstname,
             "lastname": user.lastname,
             "email": user.email
@@ -91,6 +91,7 @@ async def read_root(db: db_dependency):
         car = db.query(Car).filter(Car.id == s.car_id).first()
         cars = {
             "id": car.id,
+            "name": car.name,
             "brand": car.brand.name,
             "model": car.model.name,
             "type": car.type.name,
