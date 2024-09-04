@@ -75,13 +75,14 @@ def get_db():
 db_dependency = Annotated[Session, Depends(get_db)]
 user_dependency = Annotated[User, Depends(get_current_user)]
 
-@app.get("/", response_model=list[SellerReponse], status_code=200)
+@app.get("/", status_code=200)
 async def read_root(db: db_dependency):
     seller = db.query(Seller).limit(6).all()
     offer = []
     for s in seller:
         user = db.query(User).filter(User.id == s.user_id).first() 
         users = {
+            "id": user.id,
             "name": user.username,
             "firstname": user.firstname,
             "lastname": user.lastname,
@@ -89,18 +90,19 @@ async def read_root(db: db_dependency):
         }
         car = db.query(Car).filter(Car.id == s.car_id).first()
         cars = {
-            "brand": car.brand_id.name,
-            "model": car.model_id.name,
-            "type": car.type_id.name,
-            "fuel": car.fuel_id.name,
+            "id": car.id,
+            "brand": car.brand.name,
+            "model": car.model.name,
+            "type": car.type.name,
+            "fuel": car.fuel.name,
             "tachometer": car.tachometer,
             "made_at": car.made_at,
             "description": car.description,
-            "car_body": car.car_body_id.name,
-            "gearbox": car.gearbox_id.name,
+            "car_body": car.car_body.name,
+            "gearbox": car.gearbox.name,
             "power": car.power,
             "place_of_sale": car.place_of_sale,
-            "country": car.country_of_car.name,
+            "country": car.country.name,
             "history": car.history
         }
         image = db.query(Image).filter(Image.car_id == car.id).all()
