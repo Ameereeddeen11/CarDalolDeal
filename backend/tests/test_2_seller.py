@@ -29,7 +29,7 @@ get_data = [
         'id': 1, 
         'user': {
             'id': 1,
-            'name': 'test', 
+            'username': 'test', 
             'firstname': 'testfirstname',
             'lastname': 'testlastname',
             'email': 'test@test.com'
@@ -39,6 +39,7 @@ get_data = [
         'sold': False, 
         'car': {
             'id': 1,
+            'name': 'hi',
             'brand': 'Mercedes', 
             'model': 'Class G', 
             'type': 'Personal', 
