@@ -36,6 +36,8 @@ oauth_scheme = OAuth2PasswordBearer(tokenUrl="auth/login")
 async def register_user(db: db_dependency, create_user_request: CreateUserRequest):
     create_user_model = User(
         username=create_user_request.username,
+        firstname=create_user_request.firstname,
+        lastname=create_user_request.lastname,
         email=create_user_request.email,
         password=pwd_context.hash(create_user_request.password)
     )
