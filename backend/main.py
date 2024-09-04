@@ -89,18 +89,18 @@ async def read_root(db: db_dependency):
         }
         car = db.query(Car).filter(Car.id == s.car_id).first()
         cars = {
-            "brand": car.brand.name,
-            "model": car.model.name,
-            "type": car.type.name,
-            "fuel": car.fuel.name,
+            "brand": car.brand_id.name,
+            "model": car.model_id.name,
+            "type": car.type_id.name,
+            "fuel": car.fuel_id.name,
             "tachometer": car.tachometer,
             "made_at": car.made_at,
             "description": car.description,
-            "car_body": car.car_body.name,
-            "gearbox": car.gearbox.name,
+            "car_body": car.car_body_id.name,
+            "gearbox": car.gearbox_id.name,
             "power": car.power,
             "place_of_sale": car.place_of_sale,
-            "country": car.country.name,
+            "country": car.country_of_car.name,
             "history": car.history
         }
         image = db.query(Image).filter(Image.car_id == car.id).all()

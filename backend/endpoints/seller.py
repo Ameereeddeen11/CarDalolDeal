@@ -29,39 +29,43 @@ router = APIRouter(
 @router.get("/advertise", status_code=200)
 async def get_advertise(db: db_dependency, user: user_dependency):
     seller = db.query(Seller).filter(Seller.user_id == user["user_id"]).all()
-    car = db.query(Car).filter(Car.id == seller.car_id).first()
-    image = db.query(Image).filter(Image.car_id == car.id).all()
-    return SellerReponse(
-        id = seller.id,
-        user = UserResponse(
-            id = seller.user_id.id,
-            username = seller.user_id.username,
-            firstname = seller.user_id.firstname,
-            lastname = seller.user_id.lastname,
-            email = seller.user_id.email
-        ),
-        car = CarResponse(
-            id = car.id,
-            name = car.name,
-            brand = car.brand.name,
-            model = car.model.name,
-            type = car.type.name,
-            fuel = car.fuel.name,
-            tachometer = car.tachometer,
-            made_at = car.made_at,
-            description = car.description,
-            car_body = car.car_body.name,
-            gearbox = car.gearbox.name,
-            power = car.power,
-            place_of_sale = car.place_of_sale,
-            country = car.country.name,
-            history = car.history
-        ),
-        price = seller.price,
-        min_price = seller.min_price,
-        sold = seller.sold,
-        images = [i.url for i in image]
-    )
+    response = []
+    for s in seller: 
+        car = db.query(Car).filter(Car.id == s.car_id).first()
+        image = db.query(Image).filter(Image.car_id == car.id).all()
+        user = db.query(User).filter(User.id == s.user_id).first()
+        response.append({
+            "id": s.id,
+            "user": {
+                "id": user.id,
+                "username": user.username,
+                "firstname": user.firstname,
+                "lastname": user.lastname,
+                "email": user.email
+            },
+            "price": s.price,
+            "min_price": s.min_price,
+            "sold": s.sold,
+            "car": {
+                "id": car.id,
+                "name": car.name,
+                "brand": car.brand_id.name,
+                "model": car.model_id.name,
+                "type": car.type_id.name,
+                "fuel": car.fuel_id.name,
+                "tachometer": car.tachometer,
+                "made_at": car.made_at,
+                "description": car.description,
+                "car_body": car.car_body_id.name,
+                "gearbox": car.gearbox_id.name,
+                "power": car.power,
+                "place_of_sale": car.place_of_sale,
+                "country": car.country_of_car.name,
+                "history": car.history
+            },
+            "images": [i.url for i in image],
+        })
+    return response
 
 @router.get("/{seller_id}", status_code=200)
 async def get_seller(seller_id: int, db: db_dependency):
@@ -70,14 +74,15 @@ async def get_seller(seller_id: int, db: db_dependency):
         raise HTTPException(status_code=404, detail="Car not found")
     car = db.query(Car).filter(Car.id == seller.car_id).first()
     image = db.query(Image).filter(Image.car_id == car.id).all()
+    user = db.query(User).filter(User.id == seller.user_id).first()
     return [{
         "id": seller.id,
         "user": {
-            "id": seller.user_id.id,
-            "username": seller.user_id.username,
-            "firstname": seller.user_id.firstname,
-            "lastname": seller.user_id.lastname,
-            "email": seller.user_id.email
+            "id": user.id,
+            "username": user.username,
+            "firstname": user.firstname,
+            "lastname": user.lastname,
+            "email": user.email
         },
         "price": seller.price,
         "min_price": seller.min_price,
@@ -85,18 +90,18 @@ async def get_seller(seller_id: int, db: db_dependency):
         "car": {
             "id": car.id,
             "name": car.name,
-            "brand": car.brand.name,
-            "model": car.model.name,
-            "type": car.type.name,
-            "fuel": car.fuel.name,
+            "brand": car.brand_id.name,
+            "model": car.model_id.name,
+            "type": car.type_id.name,
+            "fuel": car.fuel_id.name,
             "tachometer": car.tachometer,
             "made_at": car.made_at,
             "description": car.description,
-            "car_body": car.car_body.name,
-            "gearbox": car.gearbox.name,
+            "car_body": car.car_body_id.name,
+            "gearbox": car.gearbox_id.name,
             "power": car.power,
             "place_of_sale": car.place_of_sale,
-            "country": car.country.name,
+            "country": car.country_of_car.name,
             "history": car.history
         },
         "images": [i.url for i in image],
