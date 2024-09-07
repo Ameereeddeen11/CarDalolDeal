@@ -4,7 +4,7 @@ from .test_1_create import client, login_after_update
 def test_delete_seller():
     response = client.delete(
         "/seller/delete/car/1/",
-        headers={"Authorization": f"bearer {login_after_update()}"}
+        headers={"Authorization": f"Bearer {login_after_update()}"}
     )
     assert response.status_code == 200
     assert response.json() == {"message": "Car deleted successfully"}
@@ -13,7 +13,7 @@ def test_delete_seller():
 def test_delete_user():
     response = client.delete(
         "/user/delete/",
-        headers={"Authorization": f"bearer {login_after_update()}"}
+        headers={"Authorization": f"Bearer {login_after_update()}"}
     )
     assert response.status_code == 200
     assert response.json() == {"message": "User deleted successfully"}

@@ -1,10 +1,10 @@
-from .test_1_create import client, login_after_update
+from .test_1_create import client, login_after_update, login_user, login_username
 
 # Test update user
 def test_update_user():
     response = client.put(
         "/auth/update/1/",
-        headers={"Authorization": f"Bearer {login_after_update()}"},
+        headers={"Authorization": f"Bearer {login_user()}"},
         json={
             "username": "updatedtest",
             "firstname": "updatedfirstname",
@@ -19,7 +19,7 @@ def test_update_user():
 def test_update_password():
     response = client.put(
         "/auth/update/password/1/",
-        headers={"Authorization": f"Bearer {login_after_update()}"},
+        headers={"Authorization": f"Bearer {login_username()}"},
         json={
             "old_password": "password",
             "password": "newpassword"
