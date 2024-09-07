@@ -12,7 +12,7 @@ def test_delete_seller():
 # Test delete user
 def test_delete_user():
     response = client.delete(
-        "/user/delete/",
+        "/auth/delete/",
         headers={"Authorization": f"Bearer {login_after_update()}"}
     )
     assert response.status_code == 200
