@@ -8,8 +8,8 @@ from database.models import User
 from passlib.context import CryptContext
 from jose import JWTError, jwt
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
-from schemas.userSchemas import CreateUserRequest, Token
-from response.userResponse import UserLoginResponse
+from schemas.userSchemas import *
+from response.userResponse import *
 
 router = APIRouter(
     prefix="/auth",
@@ -85,3 +85,39 @@ async def get_current_user(token: Annotated[str, Depends(oauth_scheme)]):
         }
     except JWTError:
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Could not validate credentials")
+    
+user_dependency = Annotated[dict, Depends(get_current_user)]
+    
+@router.put("/update/{user_id}", status_code=status.HTTP_200_OK)
+async def update_user(db: db_dependency, user_id: int, create_user_request: UserUpdate, user: user_dependency):
+    user = db.query(User).filter(User.id == user_id).first()
+    if not user:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="User not found")
+    
+    for key, value in create_user_request.dict().items():
+        if value is not None and value != "":
+            setattr(user, key, value)
+            db.commit()
+    return {"message": "User updated successfully"}
+
+@router.put("/update/password/{user_id}", status_code=status.HTTP_200_OK)
+async def update_password(db: db_dependency, user_id: int, password: UserUpdatePassword, user: user_dependency):
+    user = db.query(User).filter(User.id == user_id).first()
+    if not user:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="User not found")
+    
+    if not pwd_context.verify(password.old_password, user.password):
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Incorrect password")
+    
+    user.password = pwd_context.hash(password.password)
+    db.commit()
+    return {"message": "Password updated successfully"}
+
+@router.delete("/delete/", status_code=status.HTTP_200_OK)
+async def delete_user(db: db_dependency, user: Annotated[User, Depends(get_current_user)]):
+    user = db.query(User).filter(User.id == user["user_id"]).first()
+    if not user: 
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="User not found")
+    db.delete(user)
+    db.commit()
+    return {"message": "User deleted successfully"}
