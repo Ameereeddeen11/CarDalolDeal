@@ -5,7 +5,7 @@ get_data = [
         'id': 1, 
         'user': {
             'id': 1,
-            'username': 'test', 
+            'username': 'testusername', 
             'firstname': 'testfirstname',
             'lastname': 'testlastname',
             'email': 'test@test.com'

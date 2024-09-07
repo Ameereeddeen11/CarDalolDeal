@@ -62,6 +62,16 @@ def login_user():
     )
     return response.json()["access_token"]
 
+def login_after_update():
+    response = client.post(
+        "/auth/login/",
+        data={
+            "username": "updatedtest",
+            "password": "newpassword"
+        }
+    )
+    return response.json()["access_token"]
+
 # Test user logout
 # def test_user_logout():
 #     response = client.post(
