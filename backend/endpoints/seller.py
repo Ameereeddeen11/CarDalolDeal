@@ -265,8 +265,10 @@ async def delete_car(
         raise HTTPException(status_code=404, detail="Car not found or it is already deleted")
     car = db.query(Car).filter(Car.id == car_id).first()
     images = db.query(Image).filter(Image.car_id == car_id).all()
+    sold = db.query(Sold).filter(Sold.seller_id == seller.id).first()
     db.delete(seller)
     db.delete(car)
+    db.delete(sold)
     for image in images:
         os.remove(f"images/{image.url}")
         db.delete(image)
