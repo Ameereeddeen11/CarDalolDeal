@@ -114,8 +114,8 @@ async def update_password(db: db_dependency, user_id: int, password: UserUpdateP
     return {"message": "Password updated successfully"}
 
 @router.delete("/delete/", status_code=status.HTTP_200_OK)
-async def delete_user(db: db_dependency, user_id: int, user: Annotated[User, Depends(get_current_user)]):
-    user = db.query(User).filter(User.id == user_id == user["user_id"]).first()
+async def delete_user(db: db_dependency, user: Annotated[User, Depends(get_current_user)]):
+    user = db.query(User).filter(User.id == user["user_id"]).first()
     if not user: 
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="User not found")
     db.delete(user)
