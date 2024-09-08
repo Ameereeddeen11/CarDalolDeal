@@ -37,19 +37,19 @@ get_data = [
 ]
 
 # Test user information
-# def test_read_user():
-#     response = client.get(
-#         "/user/1",
-#         headers={"Authorization": f"Bearer {login_user()}"}
-#     )
-#     assert response.status_code == 200
-#     assert response.json() == {
-#         "id": 1,
-#         "username": "test",
-#         "firstname": "testfirstname",
-#         "lastname": "testlastname",
-#         "email": "test@test.com"
-#     }
+def test_read_user():
+    response = client.get(
+        "/auth/user/",
+        headers={"Authorization": f"Bearer {login_user()}"}
+    )
+    assert response.status_code == 200
+    assert response.json() == {
+        "id": 1,
+        "username": "testusername",
+        "firstname": "testfirstname",
+        "lastname": "testlastname",
+        "email": "test@test.com"
+    }
 
 # Test all advertisements
 def test_read_main():

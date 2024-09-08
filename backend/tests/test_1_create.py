@@ -52,6 +52,7 @@ def test_user_login():
     )
     assert response.status_code == 200
 
+# Take access token for user login
 def login_user():
     response = client.post(
         "/auth/login/",
@@ -62,6 +63,7 @@ def login_user():
     )
     return response.json()["access_token"]
 
+# Take access token for user login with new username 
 def login_username():
     response = client.post(
         "/auth/login/",
@@ -72,6 +74,7 @@ def login_username():
     )
     return response.json()["access_token"]
 
+# Take access token for user login with new password
 def login_after_update():
     response = client.post(
         "/auth/login/",
