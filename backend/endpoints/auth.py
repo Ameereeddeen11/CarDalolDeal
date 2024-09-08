@@ -87,6 +87,19 @@ async def get_current_user(token: Annotated[str, Depends(oauth_scheme)]):
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Could not validate credentials")
     
 user_dependency = Annotated[dict, Depends(get_current_user)]
+
+@router.get("/user/", status_code=status.HTTP_200_OK, response_model=UserResponse)
+async def read_user(user: user_dependency, db: db_dependency):
+    user = db.query(User).filter(User.id == user["user_id"]).first()
+    if not user:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="User onauthorized")
+    return {
+        "id": user.id,
+        "username": user.username, 
+        "firstname": user.firstname,
+        "lastname": user.lastname,
+        "email": user.email
+    }
     
 @router.put("/update/{user_id}", status_code=status.HTTP_200_OK)
 async def update_user(db: db_dependency, user_id: int, create_user_request: UserUpdate, user: user_dependency):

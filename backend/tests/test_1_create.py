@@ -52,35 +52,37 @@ def test_user_login():
     )
     assert response.status_code == 200
 
+# Base function for user login
+def login(data):
+    response = client.post(
+        "/auth/login/",
+        data=data
+    )
+    return response.json()["access_token"]
+
+# Test user login
 def login_user():
-    response = client.post(
-        "/auth/login/",
-        data={
-            "username": "testusername",
-            "password": "password"
-        }
-    )
-    return response.json()["access_token"]
+    data = {
+        "username": "testusername",
+        "password": "password"
+    }
+    login(data)
 
+# Test login with new username  
 def login_username():
-    response = client.post(
-        "/auth/login/",
-        data={
-            "username": "updatedtest",
-            "password": "password"
-        }
-    )
-    return response.json()["access_token"]
+    data = {
+        "username": "updatedtest",
+        "password": "password"
+    }
+    login(data)
 
+# Test login with new password
 def login_after_update():
-    response = client.post(
-        "/auth/login/",
-        data={
-            "username": "updatedtest",
-            "password": "newpassword"
-        }
-    )
-    return response.json()["access_token"]
+    data = {
+        "username": "updatedtest",
+        "password": "newpassword"
+    }
+    login_user(data)
 
 # Test user logout
 # def test_user_logout():
