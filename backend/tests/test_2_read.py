@@ -45,7 +45,7 @@ def test_read_user():
     assert response.status_code == 200
     assert response.json() == {
         "id": 1,
-        "username": "test",
+        "username": "testusername",
         "firstname": "testfirstname",
         "lastname": "testlastname",
         "email": "test@test.com"
