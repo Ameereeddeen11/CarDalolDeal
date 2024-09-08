@@ -39,7 +39,7 @@ get_data = [
 # Test user information
 def test_read_user():
     response = client.get(
-        "/user/",
+        "/auth/user/",
         headers={"Authorization": f"Bearer {login_user()}"}
     )
     assert response.status_code == 200
