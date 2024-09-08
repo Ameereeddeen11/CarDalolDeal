@@ -82,7 +82,7 @@ def login_after_update():
         "username": "updatedtest",
         "password": "newpassword"
     }
-    login_user(data)
+    login(data)
 
 # Test user logout
 # def test_user_logout():
