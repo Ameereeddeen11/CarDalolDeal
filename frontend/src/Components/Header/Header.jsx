@@ -1,11 +1,12 @@
 import {Navbar, Container, Nav, NavDropdown, Button, Offcanvas} from 'react-bootstrap';
 import IsUserLogged from './IsUserLogged.jsx'
 import Search from './Search.jsx';
+import './Header.css'
 
 function Header() {
     return(
         <>
-            <Navbar key="xxl" expand="xxl" fixed='top' className='navbar navbar-expand-lg navbar-light bg-light'>
+            <Navbar key="xxl" expand="xxl" fixed='top' className='navbar navbar-expand-lg navbar-light background'>
                 <Container>
                     <Navbar.Brand>Car Deal</Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav"/>
