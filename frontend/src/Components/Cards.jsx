@@ -35,9 +35,12 @@ function Cards(props) {
                 </Col>
                 <Col md={8}>
                     <Card.Body>
-                        <Card.Title style={{fontSize: '1.5rem', fontWeight: 'bold'}}>{props.brand} {props.model}</Card.Title>
-                        <Card.Text>{props.description}</Card.Text>
-                        <Card.Text><span className="badge text-bg-secondary">Price: {props.price}</span></Card.Text>
+                        <Card.Title style={{fontSize: '1.5rem', fontWeight: 'bold'}}>{props.brand} {props.model} </Card.Title>
+                        <Card.Text><i class="bi bi-calendar"></i>  {props.made_at},  <i class="bi bi-speedometer2"></i>  {props.tachometer}km,  <i class="bi bi-gear"></i>  {props.power}kW,  <i class="bi bi-geo-alt"></i>  {props.place_of_sale},  <i class="bi bi-fuel-pump"></i>  {props.fuel},  <i class="bi bi-joystick"></i>  {props.gearbox}</Card.Text>
+                        <Card.Text>
+                            <span className="badge bg-secondary m-1">Price: {props.price}</span>
+                            <span className="badge bg-secondary m-1">Min Price: {props.min_price}</span>
+                        </Card.Text>
                     </Card.Body>
                     <Card.Body>
                     <Button variant="primary" style={{fontWeight:'bold'}} onClick={() => handleClink()}>More about</Button>

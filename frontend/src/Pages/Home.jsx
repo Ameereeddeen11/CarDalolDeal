@@ -2,6 +2,7 @@ import { Container, Row, Col, Button } from "react-bootstrap";
 import Cards from '../Components/Cards.jsx';
 import Filters from "../Components/Filters/Filters.jsx";
 import React, { useState, useEffect } from "react";
+import './Home.css'
 
 // const car = [
 //     { id: 1, title: 'BMW I8', text: 'My favorite car', price: '$250000', image: './image/bmwi81.jpg' },
@@ -37,7 +38,19 @@ function Home() {
 
     const cards = data.map((cars) => (
         <Col xs={12} key={cars.id} className="mb-4">
-            <Cards id={cars.id} brand={cars.car.brand} model={cars.car.model} description={cars.car.description} price={cars.price} />
+            <Cards 
+                id={cars.id} 
+                brand={cars.car.brand} 
+                model={cars.car.model} 
+                price={cars.price} 
+                min_price={cars.min_price} 
+                made_at={cars.car.made_at} 
+                tachometer={cars.car.tachometer} 
+                power={cars.car.power} 
+                fuel={cars.car.fuel} 
+                gearbox={cars.car.gearbox} 
+                place_of_sale={cars.car.place_of_sale} 
+            />
         </Col>
     ));
 
