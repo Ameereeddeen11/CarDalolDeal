@@ -2,6 +2,7 @@ import { Row, Col, Card, Button } from "react-bootstrap"
 import image from './image/bmwi81.jpg'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { useNavigate } from 'react-router-dom'
+import CardLoading from './Loading/CardLoading'
 
 function Cards(props) {
     const navigate = useNavigate();
@@ -36,7 +37,7 @@ function Cards(props) {
                 <Col md={8}>
                     <Card.Body>
                         <Card.Title style={{fontSize: '1.5rem', fontWeight: 'bold'}}>{props.brand} {props.model} </Card.Title>
-                        <Card.Text><i class="bi bi-calendar"></i>  {props.made_at},  <i class="bi bi-speedometer2"></i>  {props.tachometer}km,  <i class="bi bi-gear"></i>  {props.power}kW,  <i class="bi bi-geo-alt"></i>  {props.place_of_sale},  <i class="bi bi-fuel-pump"></i>  {props.fuel},  <i class="bi bi-joystick"></i>  {props.gearbox}</Card.Text>
+                        <Card.Text><i class="bi bi-calendar"></i>  {props.made_at},  <i class="bi bi-speedometer2"></i>  {props.tachometer}km,  <i class="bi bi-gear"></i>  {props.power}kW,  <i class="bi bi-geo-alt"></i>  {props.place_of_sale},  <i class="bi bi-fuel-pump"></i>  {props.fuel},  <br /><i class="bi bi-joystick"></i>  {props.gearbox}</Card.Text>
                         <Card.Text>
                             <span className="badge bg-secondary m-1">Price: {props.price}</span>
                             <span className="badge bg-secondary m-1">Min Price: {props.min_price}</span>

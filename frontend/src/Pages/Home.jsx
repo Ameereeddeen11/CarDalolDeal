@@ -2,6 +2,7 @@ import { Container, Row, Col, Button } from "react-bootstrap";
 import Cards from '../Components/Cards.jsx';
 import Filters from "../Components/Filters/Filters.jsx";
 import React, { useState, useEffect } from "react";
+import CardLoading from "../Components/Loading/CardLoading.jsx";
 import './Home.css'
 
 // const car = [
@@ -33,9 +34,8 @@ function Home() {
         fetchData();
     }, []); // Empty dependency array means this useEffect runs once on mount
 
-    if (loading) return <p>Loading...</p>;
-    if (error) return <p>Error: {error.message}</p>;
-
+    if (loading) return <CardLoading />;
+    if (error) return <p>Error: {error.message}</p>; 
     const cards = data.map((cars) => (
         <Col xs={12} key={cars.id} className="mb-4">
             <Cards 
