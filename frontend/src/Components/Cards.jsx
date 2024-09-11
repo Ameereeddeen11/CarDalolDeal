@@ -2,6 +2,7 @@ import { Row, Col, Card, Button } from "react-bootstrap"
 import image from './image/bmwi81.jpg'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { useNavigate } from 'react-router-dom'
+import CardLoading from './Loading/CardLoading'
 
 function Cards(props) {
     const navigate = useNavigate();
