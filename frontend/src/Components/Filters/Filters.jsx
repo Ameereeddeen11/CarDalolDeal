@@ -4,6 +4,7 @@ import Category from './Category.jsx'
 import PriceRange from './PriceRange.jsx'
 import { Button, Row, Accordion } from 'react-bootstrap'
 import './filter.css'
+import Search from '../Header/Search.jsx'
 
 function Filters() {
     const filters = [
@@ -39,7 +40,10 @@ function Filters() {
     return (
         <div className='sticky-box p-3 bg-light rounded-4 shadow'>
             <Row className='my-2'>
-                <h3>Filter Cars</h3>
+                <h3 className='text-center'>Filter Cars</h3>
+            </Row>
+            <Row className='my-4'>
+                <Search/>
             </Row>
             <Row>
                 <Accordion defaultActiveKey={['0']} alwaysOpen>

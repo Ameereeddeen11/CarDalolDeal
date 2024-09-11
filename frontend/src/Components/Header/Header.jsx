@@ -10,9 +10,6 @@ function Header() {
                 <Container>
                     <Navbar.Brand>Car Deal</Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav"/>
-                    <Navbar.Collapse className='justify-content-center'>
-                        <Search/>
-                    </Navbar.Collapse>
                     <Navbar.Offcanvas 
                         id='offcanvasNavbar-expand-xxl'
                         aria-labelledby='offcanvasNavbarLabel-expand-xxl'
