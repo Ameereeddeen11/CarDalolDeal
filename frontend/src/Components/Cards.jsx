@@ -2,7 +2,8 @@ import { Row, Col, Card, Button } from "react-bootstrap"
 import image from './image/bmwi81.jpg'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { useNavigate } from 'react-router-dom'
-import CardLoading from './Loading/CardLoading'
+// import CardLoading from './Loading/CardLoading'
+import Modals from './BuyerForm/Modals.jsx'
 
 function Cards(props) {
     const navigate = useNavigate();
@@ -37,14 +38,22 @@ function Cards(props) {
                 <Col md={8}>
                     <Card.Body>
                         <Card.Title style={{fontSize: '1.5rem', fontWeight: 'bold'}}>{props.brand} {props.model} </Card.Title>
-                        <Card.Text><i class="bi bi-calendar"></i>  {props.made_at},  <i class="bi bi-speedometer2"></i>  {props.tachometer}km,  <i class="bi bi-gear"></i>  {props.power}kW,  <i class="bi bi-geo-alt"></i>  {props.place_of_sale},  <i class="bi bi-fuel-pump"></i>  {props.fuel},  <br /><i class="bi bi-joystick"></i>  {props.gearbox}</Card.Text>
+                        <Card.Text>
+                            <i class="bi bi-calendar"> {props.made_at},</i> 
+                            <i class="bi bi-speedometer2 mx-2"> {props.tachometer}km,</i>  
+                            <i class="bi bi-gear"> {props.power}kW,</i>
+                            <i class="bi bi-geo-alt mx-2"> {props.place_of_sale},</i>  
+                            <i class="bi bi-fuel-pump"> {props.fuel},</i><br />
+                            <i class="bi bi-joystick"> {props.gearbox}</i>
+                        </Card.Text>
                         <Card.Text>
                             <span className="badge bg-secondary m-1">Price: {props.price}</span>
                             <span className="badge bg-secondary m-1">Min Price: {props.min_price}</span>
                         </Card.Text>
                     </Card.Body>
                     <Card.Body>
-                    <Button variant="primary" style={{fontWeight:'bold'}} onClick={() => handleClink()}>More about</Button>
+                        <Button variant="primary" style={{fontWeight:'bold'}} onClick={() => handleClink()}>More about</Button>
+                        <Modals brand={props.brand} model={props.model} price={props.price} />
                     </Card.Body>
                 </Col>
             </Row>
