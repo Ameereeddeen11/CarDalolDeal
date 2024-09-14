@@ -50,6 +50,7 @@ function Home() {
                 fuel={cars.car.fuel} 
                 gearbox={cars.car.gearbox} 
                 place_of_sale={cars.car.place_of_sale} 
+                saved={true}
             />
         </Col>
     ));
