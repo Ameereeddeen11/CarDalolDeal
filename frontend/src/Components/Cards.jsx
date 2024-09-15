@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import { useNavigate } from 'react-router-dom'
 // import CardLoading from './Loading/CardLoading'
 import Modals from './BuyerForm/Modals.jsx'
+import './Cards.css'
 
 function Cards(props) {
     const navigate = useNavigate();
@@ -11,6 +12,14 @@ function Cards(props) {
     const handleClink = () => {
         navigate(`/seller/${props.id}`)
     }
+    
+    const isSaved = (
+        <Button variant="primary" className="mx-3" style={{width: "7rem"}}><i class="bi bi-bookmark-fill"></i></Button>
+    )
+    const isNotSaved = (
+        <Button variant="outline-primary" className="mx-3" style={{width: "7rem"}}><i class="bi bi-bookmark"></i></Button>
+    )
+
     return (
         <Card  
             style={{ 
@@ -37,7 +46,15 @@ function Cards(props) {
                 </Col>
                 <Col md={8}>
                     <Card.Body>
-                        <Card.Title style={{fontSize: '1.5rem', fontWeight: 'bold'}}>{props.brand} {props.model} </Card.Title>
+                        <Card.Title style={{
+                            fontSize: '1.5rem', 
+                            fontWeight: 'bold',
+
+                        }}
+                        className="cartitle" 
+                        onClick={() => handleClink()}>
+                            {props.brand} {props.model} 
+                        </Card.Title>
                         <Card.Text>
                             <i class="bi bi-calendar"> {props.made_at},</i> 
                             <i class="bi bi-speedometer2 mx-2"> {props.tachometer}km,</i>  
@@ -47,13 +64,13 @@ function Cards(props) {
                             <i class="bi bi-joystick"> {props.gearbox}</i>
                         </Card.Text>
                         <Card.Text>
-                            <span className="badge bg-secondary m-1">Price: {props.price}</span>
+                            <span className="badge bg-secondary">Price: {props.price}</span>
                             <span className="badge bg-secondary m-1">Min Price: {props.min_price}</span>
                         </Card.Text>
                     </Card.Body>
                     <Card.Body>
-                        <Button variant="primary" style={{fontWeight:'bold'}} onClick={() => handleClink()}>More about</Button>
                         <Modals brand={props.brand} model={props.model} price={props.price} />
+                        {props.saved ? isSaved : isNotSaved}
                     </Card.Body>
                 </Col>
             </Row>

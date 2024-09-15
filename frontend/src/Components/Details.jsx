@@ -1,21 +1,19 @@
 import './Filters/filter.css'
-import { Button, Row } from 'react-bootstrap';
+import { Button, Container, Row } from 'react-bootstrap';
 import Modals from './BuyerForm/Modals.jsx';
 
 function Details(props) {
-    const renderData = props.data.map((user) => (
-        <>
-            <p>id: {user.id}</p>
-            <p>username: {user.username}</p>
-            <p>firstname: {user.firstname}</p>
-            <p>lastname: {user.lastname}</p>
-            <p>email: {user.email}</p>
-        </>
+    const renderData = props.data.map((data) => (
+        <div key={data.id}>
+            <h3>{data.title}</h3>
+            <p>About Car: {data.text}</p>
+            <p>Price: {data.price} Kc</p>
+        </div>
     ))
     return (
-        <div className="sticky-box p-3 bg-light rounded-4 shadow">
+        <Container className="sticky-box p-3 bg-light rounded-4 shadow">
             <Row>
-                <h3></h3>
+                {renderData}
             </Row>
             <Row>
             </Row>
@@ -23,10 +21,9 @@ function Details(props) {
                 <p>Seller: </p>
             </Row>
             <Row className='justify-content-center'>
-                {/* <Modals /> */}
-                {renderData}
+                <Modals />
             </Row>
-        </div>
+        </Container>
     )
 }
 
