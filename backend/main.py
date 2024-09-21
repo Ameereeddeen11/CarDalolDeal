@@ -14,39 +14,40 @@ from typing import List, Any
 
 app = FastAPI()
 
-# class DDOSAgainstMiddleware(BaseHTTPMiddleware):
-#     def __init__(self, app):
-#         super().__init__(app)
-#         self.rate_limit_records = defaultdict(float)
+class DDOSAgainstMiddleware(BaseHTTPMiddleware):
+    def __init__(self, app):
+        super().__init__(app)
+        self.rate_limit_records = defaultdict(float)
 
-#     async def log_message(self, message: str):
-#         print(message)
+    async def log_message(self, message: str):
+        print(message)
 
-#     async def dispatch(self, request: Request, call_next):
-#         client_ip = request.client.host
-#         current_time = time.time()
-#         path = request.url.path
+    async def dispatch(self, request: Request, call_next):
+        client_ip = request.client.host
+        current_time = time.time()
+        path = request.url.path
         
-#         if path not in ["/docs", "/openapi.json"]:
-#             if current_time - self.rate_limit_records[client_ip] < 1:
-#                 return Response(content="Rate limit exceeded", status_code=429)
-#             self.rate_limit_records[client_ip] = current_time
+        if path not in ["/docs", "/openapi.json"]:
+            if current_time - self.rate_limit_records[client_ip] < 1:
+                return Response(content="Rate limit exceeded", status_code=429)
+            self.rate_limit_records[client_ip] = current_time
         
-#         await self.log_message(f"Request to {path}")
+        await self.log_message(f"Request to {path}")
         
-#         start_time = time.time()
-#         response = await call_next(request)
-#         process_time = time.time() - start_time
+        start_time = time.time()
+        response = await call_next(request)
+        process_time = time.time() - start_time
 
-#         response.headers["Process-Time"] = str(process_time)
-#         await self.log_message(f'Response for {path} took {process_time} seconds')
-#         return response
+        response.headers["Process-Time"] = str(process_time)
+        await self.log_message(f'Response for {path} took {process_time} seconds')
+        return response
 
 origins = [
     "http://localhost.tiangolo.com",
     "https://localhost.tiangolo.com",
     "http://localhost",
-    "http://localhost:8080",
+    "http://localhost:8000",
+    "http://localhost:5432",
 ]
 
 app.add_middleware(
