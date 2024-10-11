@@ -1,13 +1,4 @@
 services:
-  backend:
-    build: ./backend
-    volumes:
-      - ./backend:/app
-    ports:
-      - 8000:8000
-    container_name: backend
-    depends_on:
-      - db
   db:
     image: postgres:latest
     environment:
@@ -18,7 +9,17 @@ services:
       - 5432:5432
     volumes:
      - ./data/db:/var/lib/postgresql/data
-    container_name: database
+    container_name: db
+
+  backend:
+    build: ./backend
+    volumes:
+      - ./backend:/app
+    ports:
+      - 8000:8000
+    container_name: backend
+    depends_on:
+      - db
 
 volumes:
   pg_data:

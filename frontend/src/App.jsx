@@ -3,6 +3,7 @@ import Header from './Components/Header/Header.jsx'
 import Footer from './Components/Footer/Footer.jsx'
 import Home from './Pages/Home.jsx'
 import Offer from './Pages/Offer.jsx'
+import Login from './Pages/Login.jsx'
 import { Route, Routes } from 'react-router-dom'
 
 const navLinks = ["Home", "Hi"]
@@ -19,6 +20,7 @@ function App() {
       <Routes>
         <Route exact path='/' element={<Home/>} />
         <Route path="/seller/:id" element={<Offer/>} />
+        <Route path="/login" element={<Login/>} />
       </Routes>
       <br /><br />
       <Footer/>

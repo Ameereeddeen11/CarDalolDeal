@@ -2,6 +2,7 @@ import {Navbar, Container, Nav, NavDropdown, Button, Offcanvas} from 'react-boot
 import IsUserLogged from './IsUserLogged.jsx'
 import Search from './Search.jsx';
 import './Header.css'
+import user from '../../Pages/Login.jsx'
 
 function Header() {
     return(
@@ -36,7 +37,7 @@ function Header() {
                                         </svg>
                                     </Button>
                                 </Nav>
-                                <NavDropdown title={<IsUserLogged name="Amir" isLoggedIn={true}/>} id='offcanvasNavbarDropdown-expand-xxl'>
+                                <NavDropdown title={<IsUserLogged name="Amir" isLoggedIn={user}/>} id='offcanvasNavbarDropdown-expand-xxl'>
                                     <NavDropdown.Item>Profile</NavDropdown.Item>
                                     <NavDropdown.Item>Liked</NavDropdown.Item>
                                     <NavDropdown.Item>Settings</NavDropdown.Item>
