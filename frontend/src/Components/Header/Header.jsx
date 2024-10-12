@@ -4,7 +4,7 @@ import Search from './Search.jsx';
 import './Header.css'
 import user from '../../Pages/Login.jsx'
 
-function Header() {
+function Header(props) {
     return(
         <>
             <Navbar key="xxl" expand="xxl" fixed='top' className='navbar navbar-expand-lg navbar-light background'>
@@ -37,7 +37,7 @@ function Header() {
                                         </svg>
                                     </Button>
                                 </Nav>
-                                <NavDropdown title={<IsUserLogged name="Amir" isLoggedIn={user}/>} id='offcanvasNavbarDropdown-expand-xxl'>
+                                <NavDropdown title={<IsUserLogged name="Amir" isLoggedIn={props.isLoggedIn}/>} id='offcanvasNavbarDropdown-expand-xxl'>
                                     <NavDropdown.Item>Profile</NavDropdown.Item>
                                     <NavDropdown.Item>Liked</NavDropdown.Item>
                                     <NavDropdown.Item>Settings</NavDropdown.Item>
