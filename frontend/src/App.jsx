@@ -16,25 +16,27 @@ function App() {
     seller: 'http://localhost:8000/seller/' + 1,
   }
 
-  const { loggedIn, isLoggedIn } = useState(false)
+  const [ loggedIn, setLoggedIn ] = useState(false)
   const navigate = useNavigate()
   useEffect(() => {
-    const fetchData = async () => {
+    const verifyToken = async () => {
+      const token = localStorage.getItem('access_token');
+      if (!token) return;
       try {
-        const response = await fetch(`http://localhost:8000/verify-token/${token}`)
+        const response = await fetch(`http://localhost:8000/auth/verify-token/${token}`)
         if (!response.ok) {
-          throw new Error('Network response was not ok')
-          isLoggedIn(false)
+          throw new Error('Invalid token');
+          setLoggedIn(false);
         }
-        const result = await response.json()
-        console.log(result)
-        isLoggedIn(true)
-      } catch (error) {
-        console.log(error)
+        setLoggedIn(true);
       }
-    }
-    fetchData()
-  })
+      catch (error) {
+        console.error(error);
+        setLoggedIn(false);
+      }
+    };
+    verifyToken();
+  }, [navigate]);
 
   return(
     <>

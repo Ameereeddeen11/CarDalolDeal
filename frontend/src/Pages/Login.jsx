@@ -35,7 +35,7 @@ function Login() {
                 throw new Error('Invalid credentials');
             }
             const result = await response.json();
-            localStorage.setItem('token', result.token);
+            localStorage.setItem('access_token', result.access_token);
             navigate('/');
         } catch (error) {
             setError(error.message);
