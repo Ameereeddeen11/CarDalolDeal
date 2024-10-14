@@ -21,18 +21,31 @@ function App() {
   useEffect(() => {
     const verifyToken = async () => {
       const token = localStorage.getItem('access_token');
-      if (!token) return;
+        console.log(token)
+      if (!token) {
+        setLoggedIn(false);
+        return;
+      }
       try {
-        const response = await fetch(`http://localhost:8000/auth/verify-token/${token}`)
+        const response = await fetch(`http://localhost:8000/auth/verify-token/`, {
+          method: 'POST',
+          headers: { 
+            'Content-Type': 'application/json', 
+            'Authorization': `Bearer ${token}`,
+          },
+        })
         if (!response.ok) {
           throw new Error('Invalid token');
+          localStorage.removeItem('access_token');
           setLoggedIn(false);
         }
         setLoggedIn(true);
+        localStorage.setItem('access_token', token);
       }
       catch (error) {
-        console.error(error);
         setLoggedIn(false);
+        localStorage.removeItem('access_token');
+        navigate('/');
       }
     };
     verifyToken();

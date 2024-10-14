@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, Request
 from datetime import datetime, timedelta
 from typing import Annotated
 from starlette import status
@@ -88,24 +88,10 @@ async def get_current_user(token: Annotated[str, Depends(oauth_scheme)]):
     
 user_dependency = Annotated[dict, Depends(get_current_user)]
 
-def verify_token(token: str):
-    try:
-        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
-        username: str = payload.get("sub")
-        user_id: int = payload.get("user_id")
-        if username is None:
-            raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Could not validate credentials")
-        return {
-            "username": username,
-            "user_id": user_id
-        }
-    except JWTError:
-        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Could not validate credentials")
-
-@router.get("/verify-token/{token}", status_code=status.HTTP_200_OK)
-async def verify_token(token: str):
-    verify_token(token=token)
-    return {"message": "Token is valid"}
+# verify token 
+@router.post("/verify-token", status_code=status.HTTP_200_OK)
+async def verify_user(user: user_dependency):
+    return user
 
 @router.get("/user/", status_code=status.HTTP_200_OK, response_model=UserResponse)
 async def read_user(user: user_dependency, db: db_dependency):
