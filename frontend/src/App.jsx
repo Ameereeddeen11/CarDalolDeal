@@ -54,13 +54,13 @@ function App() {
   return(
     <>
       <Header name="Amir" isLoggedIn={loggedIn} />
-      <br /><br />
-      <Routes>
+      <br />
+      <Routes className="my-4">
         <Route exact path='/' element={<Home/>} />
         <Route path="/seller/:id" element={<Offer/>} />
         <Route path="/login" element={<Login/>} />
       </Routes>
-      <br /><br />
+      <br />
       <Footer/>
     </>
   )
