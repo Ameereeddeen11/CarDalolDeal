@@ -39,8 +39,10 @@ function Login() {
         try {
             const response = await fetch('http://localhost:8000/auth/login', {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                body: formData,
+                headers: { 
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                    formData
+                },
             });
             if (!response.ok) {
                 throw new Error('Invalid credentials');
@@ -55,27 +57,6 @@ function Login() {
         }
     }
     return (
-        // <div>
-        //     <h1>Login</h1>
-        //     <form onSubmit={handleSubmit}>
-        //         <input
-        //             type="text"
-        //             placeholder="Username"
-        //             value={username}
-        //             onChange={(e) => setUsername(e.target.value)}
-        //         />
-        //         <input
-        //             type="password"
-        //             placeholder="Password"
-        //             value={password}
-        //             onChange={(e) => setPassword(e.target.value)}
-        //         />
-        //         <button type="submit" disabled={loading}>
-        //             {loading ? 'Loading...' : 'Login'}
-        //         </button>
-        //         {error && <div>{error}</div>}
-        //     </form>
-        // </div>
         <MDBContainer fluid>
             <MDBRow className='d-flex justify-content-center align-items-center h-100'>
                 <MDBCol col='12'>
