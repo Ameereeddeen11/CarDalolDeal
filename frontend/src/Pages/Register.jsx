@@ -58,7 +58,7 @@ function Login() {
         }
     }
     return (
-        <AuthMain title="Login" description="Please enter your login and password!" url="http://localhost:8000/auth/login" />
+        <AuthMain title="Register" description="Please enter your login and password!" url="http://localhost:8000/auth/register" />
     )
 }
 

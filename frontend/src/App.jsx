@@ -4,6 +4,7 @@ import Footer from './Components/Footer/Footer.jsx'
 import Home from './Pages/Home.jsx'
 import Offer from './Pages/Offer.jsx'
 import Login from './Pages/Login.jsx'
+import Register from './Pages/Register.jsx'
 import { Route, Routes } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
 import React, { useEffect, useState } from 'react'
@@ -59,6 +60,7 @@ function App() {
         <Route exact path='/' element={<Home/>} />
         <Route path="/seller/:id" element={<Offer/>} />
         <Route path="/login" element={<Login/>} />
+        <Route path='/register' element={<Register/>} />
       </Routes>
       <br />
       <Footer/>
