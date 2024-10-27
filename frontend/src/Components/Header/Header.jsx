@@ -2,7 +2,7 @@ import {Navbar, Container, Nav, NavDropdown, Button, Offcanvas} from 'react-boot
 import IsUserLogged from './IsUserLogged.jsx'
 import Search from './Search.jsx';
 import './Header.css'
-import user from '../../Pages/Login.jsx'
+// import user from '../../Pages/Login.jsx'
 
 function Header(props) {
     return(

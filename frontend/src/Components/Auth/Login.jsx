@@ -2,16 +2,10 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
     MDBBtn,
-    MDBContainer,
-    MDBRow,
-    MDBCol,
-    MDBCard,
-    MDBCardBody,
     MDBInput,
     MDBIcon,
     MDBCheckbox
   } from 'mdb-react-ui-kit';
-import AuthMain from "../Components/Auth/AuthMain";
 
 function Login() {
     const [username, setUsername] = useState('');
@@ -58,7 +52,41 @@ function Login() {
         }
     }
     return (
-        <AuthMain title="Register" description="Please enter your login and password!" url="http://localhost:8000/auth/register" />
+        <>
+            <h2 className="fw-bold mb-2 text-center">Login</h2>
+            <p className="text-black-50 mb-3 text-center my-3">Please enter your login and password</p>
+            <MDBInput 
+                wrapperClass='mb-4 w-100' 
+                label='Username' 
+                id='formControlLg' 
+                type='text' 
+                size="lg"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+            />
+            <MDBInput 
+                wrapperClass='mb-4 w-100' 
+                label='Password' 
+                id='formControlLg' 
+                type='password' 
+                size="lg"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+            />
+            <MDBCheckbox name='flexCheck' id='flexCheckDefault' className='mb-4' label='Remember password' />
+            <MDBBtn size='lg' onClick={handleSubmit}>
+                Login
+            </MDBBtn>
+            <hr className="my-4" />
+            <MDBBtn className="mb-2 w-100" size="lg" style={{backgroundColor: '#dd4b39'}}>
+                <MDBIcon fab icon="google" className="mx-2"/>
+                Login with Google
+            </MDBBtn>
+            <MDBBtn className="mb-4 w-100" size="lg" style={{backgroundColor: '#3b5998'}}>
+                <MDBIcon fab icon="facebook-f" className="mx-2"/>
+                Login with Facebook
+            </MDBBtn> 
+        </>
     )
 }
 

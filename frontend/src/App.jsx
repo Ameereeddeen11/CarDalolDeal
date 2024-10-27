@@ -3,8 +3,7 @@ import Header from './Components/Header/Header.jsx'
 import Footer from './Components/Footer/Footer.jsx'
 import Home from './Pages/Home.jsx'
 import Offer from './Pages/Offer.jsx'
-import Login from './Pages/Login.jsx'
-import Register from './Pages/Register.jsx'
+import AuthMain from './Pages/AuthMain.jsx'
 import { Route, Routes } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
 import React, { useEffect, useState } from 'react'
@@ -59,8 +58,8 @@ function App() {
       <Routes className="my-4">
         <Route exact path='/' element={<Home/>} />
         <Route path="/seller/:id" element={<Offer/>} />
-        <Route path="/login" element={<Login/>} />
-        <Route path='/register' element={<Register/>} />
+        <Route path="/login" element={<AuthMain login={true}/>} />
+        <Route path='/register' element={<AuthMain login={false}/>} />
       </Routes>
       <br />
       <Footer/>
