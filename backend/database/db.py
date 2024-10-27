@@ -6,7 +6,7 @@ import os
 
 load_dotenv()
 
-DB_URL = "postgresql://root:bUeN0@localhost:5432/cardb"
+DB_URL = "postgresql://root:bUeN0@db:5432/cardb"
 
 engine = create_engine(DB_URL)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
