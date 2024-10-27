@@ -30,20 +30,22 @@ function Register() {
         if (!validateForm()) return;
         setLoading(true);
 
-        const formData = new URLSearchParams();
-        formData.append('username', username);
-        formData.append('password', password);
-        formData.append('firstname', firstname);
-        formData.append('lastname', lastname);
-        formData.append('email', email);
+        const formData = JSON.stringify({
+            username: username,
+            password: password,
+            firstname: firstname,
+            lastname: lastname,
+            email: email
+        });
 
         try {
             const response = await fetch('http://localhost:8000/auth/register', {
                 method: 'POST',
-                headers: { 
-                    'Content-Type': 'application/x-www-form-urlencoded',
-                    formData
+                headers: {
+                    'accept': 'application/json',
+                    'Content-Type': 'application/json',
                 },
+                body: formData
             });
             if (!response.ok) {
                 throw new Error('Invalid credentials');
