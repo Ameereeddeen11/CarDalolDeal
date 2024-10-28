@@ -35,9 +35,9 @@ function Login() {
             const response = await fetch('http://localhost:8000/auth/login', {
                 method: 'POST',
                 headers: { 
-                    'Content-Type': 'application/x-www-form-urlencoded',
-                    formData
+                    'Content-Type': 'application/x-www-form-urlencoded'
                 },
+                body: formData
             });
             if (!response.ok) {
                 throw new Error('Invalid credentials');
