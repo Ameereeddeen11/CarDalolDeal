@@ -22,6 +22,9 @@ function Login() {
         setError('');
         return true;
     }
+    const handleRegister = () => {
+        navigate('/register');
+    }
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (!validateForm()) return;
@@ -58,7 +61,7 @@ function Login() {
             <MDBInput 
                 wrapperClass='mb-4 w-100' 
                 label='Username' 
-                id='formControlLg' 
+                id='formControlLgUserName' 
                 type='text' 
                 size="lg"
                 value={username}
@@ -67,7 +70,7 @@ function Login() {
             <MDBInput 
                 wrapperClass='mb-4 w-100' 
                 label='Password' 
-                id='formControlLg' 
+                id='formControlLgPassword' 
                 type='password' 
                 size="lg"
                 value={password}
@@ -77,7 +80,8 @@ function Login() {
             <MDBBtn size='lg' onClick={handleSubmit}>
                 Login
             </MDBBtn>
-            <hr className="my-4" />
+            <p className="text-center my-3">Haven't you registered? <MDBBtn className='mx-2' color='link' rippleColor='light' onClick={handleRegister}>Register</MDBBtn></p>
+            <hr className="" />
             <MDBBtn className="mb-2 w-100" size="lg" style={{backgroundColor: '#dd4b39'}}>
                 <MDBIcon fab icon="google" className="mx-2"/>
                 Login with Google
