@@ -17,6 +17,10 @@ function Register() {
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
 
+    const handleLogin = () => {
+        navigate('/register');
+    }
+
     const validateForm = () => {
         if (!username || !password || !firstname || !lastname || !email) {
             setError('Please fill in all fields');
@@ -50,9 +54,9 @@ function Register() {
             if (!response.ok) {
                 throw new Error('Invalid credentials');
             }
-            const result = await response.json();
-            localStorage.setItem('access_token', result.access_token);
-            navigate('/');
+            // const result = await response.json();
+            // localStorage.setItem('access_token', result.access_token);
+            navigate('/login');
         } catch (error) {
             setError(error.message);
         } finally {
@@ -62,11 +66,13 @@ function Register() {
     return (
         <>
             <h2 className="fw-bold mb-2 text-center">Register</h2>
-            <p className="text-black-50 mb-3 text-center my-3">Please enter your login and password</p>
+            <p className="text-black-50 mb-3 text-center my-3">
+                Please fill in all fields to register
+            </p>
             <MDBInput 
                 wrapperClass='mb-4 w-100' 
                 label='Firstname' 
-                id='formControlLg' 
+                id='formControlLgFirstName' 
                 type='text' 
                 size="lg"
                 value={firstname}
@@ -75,7 +81,7 @@ function Register() {
             <MDBInput 
                 wrapperClass='mb-4 w-100' 
                 label='Lastname' 
-                id='formControlLg' 
+                id='formControlLgLastName' 
                 type='text' 
                 size="lg"
                 value={lastname}
@@ -84,7 +90,7 @@ function Register() {
             <MDBInput 
                 wrapperClass='mb-4 w-100' 
                 label='Email' 
-                id='formControlLg' 
+                id='formControlLgEmail' 
                 type='email' 
                 size="lg"
                 value={email}
@@ -93,7 +99,7 @@ function Register() {
             <MDBInput 
                 wrapperClass='mb-4 w-100' 
                 label='Username' 
-                id='formControlLg' 
+                id='formControlLgUserName' 
                 type='text' 
                 size="lg"
                 value={username}
@@ -102,13 +108,15 @@ function Register() {
             <MDBInput 
                 wrapperClass='mb-4 w-100' 
                 label='Password' 
-                id='formControlLg' 
+                id='formControlLgPassword' 
                 type='password' 
                 size="lg"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
             />
             <MDBCheckbox name='flexCheck' id='flexCheckDefault' className='mb-4' label='Remember password' />
+            <p className="text-center my-3">Have you account? <MDBBtn className='mx-2' color='link' rippleColor='light' onClick={handleLogin}>Register</MDBBtn></p>
+            <hr className="" />
             <MDBBtn size='lg' onClick={handleSubmit}>
                 Register
             </MDBBtn>

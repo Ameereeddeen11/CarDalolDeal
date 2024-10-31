@@ -21,7 +21,6 @@ function App() {
   useEffect(() => {
     const verifyToken = async () => {
       const token = localStorage.getItem('access_token');
-        console.log(token)
       if (!token) {
         setLoggedIn(false);
         return;
