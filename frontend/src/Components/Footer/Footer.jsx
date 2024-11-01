@@ -1,37 +1,95 @@
-import { Container, Row, Col } from "react-bootstrap"
 import './Footer.css'
+import React from 'react';
+import { MDBFooter, MDBContainer, MDBRow, MDBCol, MDBIcon } from 'mdb-react-ui-kit';
 
-function Footer() {
+export default function Footer() {
+    const year = new Date().getFullYear();
     return (
-        <footer className="bg-white text-dark fixed-bottom py-3">
-            <Container>
-                <Row>
-                    <Col md={4} className="mb-4">
-                        <h3>Car Dalol Dealer</h3>
-                        <p>
-                            Car Dalol Dealer is a platform that connects car buyers and sellers.<br />
-                            We provide a platform where car buyers can easily find cars for sale and connect with car sellers.
-                        </p>
-                    </Col>
-                    <Col md={4} className="mb-4">
-                        <h3>Useful Links</h3>
-                        <ul className="list-unstyled">
-                            <li>Home</li>
-                            <li>About Us</li>
-                            <li>Contact Us</li>
-                        </ul>
-                    </Col>
-                    <Col md={4} className="mb-4">
-                        <h3>Contact Us</h3>
-                        <p>
-                            <strong>Email: </strong>
-                            <a href="mailto:amir.abdullaev@email.cz" className="text-dark">amir.abdullaev@email.cz</a>
-                        </p>
-                    </Col>
-                </Row>
-            </Container>
-        </footer>
-    )
-}
+        <MDBFooter bgColor='light' className='text-center text-lg-start text-muted footer shadow-5-strong'>
+            <section className=''>
+                <MDBContainer className='text-center text-md-start mt-5'>
+                <MDBRow className='mt-3'>
+                    <MDBCol md="3" lg="4" xl="3" className='mx-auto mb-4'>
+                    <h6 className='text-uppercase fw-bold mb-4'>
+                        <MDBIcon icon="gem" className="me-3" />
+                        Dalol
+                    </h6>
+                    <p>
+                        Here you can use rows and columns to organize your footer content. Lorem ipsum dolor sit amet,
+                        consectetur adipisicing elit.
+                    </p>
+                    </MDBCol>
 
-export default Footer
+                    <MDBCol md="2" lg="2" xl="2" className='mx-auto mb-4'>
+                    <h6 className='text-uppercase fw-bold mb-4'>Products</h6>
+                    <p>
+                        <a href='#!' className='text-reset'>
+                        Set your price
+                        </a>
+                    </p>
+                    <p>
+                        <a href='#!' className='text-reset'>
+                        Sell your vehicel
+                        </a>
+                    </p>
+                    <p>
+                        <a href='#!' className='text-reset'>
+                        Checkout how your car is doing
+                        </a>
+                    </p>
+                    </MDBCol>
+
+                    <MDBCol md="3" lg="2" xl="2" className='mx-auto mb-4'>
+                    <h6 className='text-uppercase fw-bold mb-4'>Useful links</h6>
+                    <p>
+                        <a href='#!' className='text-reset'>
+                        Pricing
+                        </a>
+                    </p>
+                    <p>
+                        <a href='#!' className='text-reset'>
+                        Settings
+                        </a>
+                    </p>
+                    <p>
+                        <a href='#!' className='text-reset'>
+                        Orders
+                        </a>
+                    </p>
+                    <p>
+                        <a href='#!' className='text-reset'>
+                        Help
+                        </a>
+                    </p>
+                    </MDBCol>
+
+                    <MDBCol md="4" lg="3" xl="3" className='mx-auto mb-md-0 mb-4'>
+                    <h6 className='text-uppercase fw-bold mb-4'>Contact</h6>
+                    <p>
+                        <MDBIcon icon="home" className="me-2" />
+                        New York, NY 10012, US
+                    </p>
+                    <p>
+                        <MDBIcon icon="envelope" className="me-3" />
+                        amir.abdullaev@email.cz
+                    </p>
+                    <p>
+                        <MDBIcon icon="phone" className="me-3" /> + 420 123 456 789
+                    </p>
+                    <p>
+                        <MDBIcon icon="print" className="me-3" /> + 420 987 654 321
+                    </p>
+                    </MDBCol>
+                </MDBRow>
+                </MDBContainer>
+            </section>
+
+            <div className='text-center p-4' style={{ backgroundColor: 'rgba(0, 0, 0, 0.05)' }}>
+                © {year} Copyright:
+                <a className='text-reset fw-bold' href='https://Dalol.com/'>
+                Dalol.com
+                </a>
+            </div>
+        </MDBFooter>
+    );
+}
