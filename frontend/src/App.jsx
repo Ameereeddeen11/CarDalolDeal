@@ -7,6 +7,7 @@ import AuthMain from './Pages/AuthMain.jsx'
 import { Route, Routes } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
 import React, { useEffect, useState } from 'react'
+import GoToEmail from './Pages/GoToEmail.jsx'
 
 const navLinks = ["Home", "Hi"]
 
@@ -59,6 +60,7 @@ function App() {
         <Route path="/seller/:id" element={<Offer/>} />
         <Route path="/login" element={<AuthMain login={true}/>} />
         <Route path='/register' element={<AuthMain login={false}/>} />
+        <Route path='/go-to-email' element={<GoToEmail/>} />
       </Routes>
       <br />
       <Footer/>

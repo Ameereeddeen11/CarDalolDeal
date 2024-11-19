@@ -47,10 +47,16 @@ async def register_user(db: db_dependency, create_user_request: CreateUserReques
     db.add(create_user_model)
     db.commit()
 
+    token = create_access_token(create_user_request.username, create_user_model.id, timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES))
+    send_email(create_user_request.email, token)
+
     return {
         "username": create_user_request.username,
         "email": create_user_request.email
     }
+
+def send_email(email: str, token: str):
+    pass    
 
 # this is the endpoint to login a user
 # it takes in a OAuth2PasswordRequestForm object and returns a Token object

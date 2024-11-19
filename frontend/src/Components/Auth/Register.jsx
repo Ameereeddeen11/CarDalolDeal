@@ -18,7 +18,7 @@ function Register() {
     const navigate = useNavigate();
 
     const handleLogin = () => {
-        navigate('/register');
+        navigate('/login');
     }
 
     const validateForm = () => {
@@ -54,9 +54,7 @@ function Register() {
             if (!response.ok) {
                 throw new Error('Invalid credentials');
             }
-            // const result = await response.json();
-            // localStorage.setItem('access_token', result.access_token);
-            navigate('/login');
+            navigate('/go-to-email');            
         } catch (error) {
             setError(error.message);
         } finally {
@@ -115,7 +113,7 @@ function Register() {
                 onChange={(e) => setPassword(e.target.value)}
             />
             <MDBCheckbox name='flexCheck' id='flexCheckDefault' className='mb-4' label='Remember password' />
-            <p className="text-center my-3">Have you account? <MDBBtn className='mx-2' color='link' rippleColor='light' onClick={handleLogin}>Register</MDBBtn></p>
+            <p className="text-center my-3">Have you account? <MDBBtn className='mx-2' color='link' rippleColor='light' onClick={handleLogin}>Login</MDBBtn></p>
             <hr className="" />
             <MDBBtn size='lg' onClick={handleSubmit}>
                 Register

@@ -58,7 +58,7 @@ function Home() {
     return (
         <Container className="mt-5">
             <Row>
-                <Col xs={12} md={4} className="mb-4">
+                <Col xs={12} md={4} className="mb-4 my-4">
                     <Filters />
                 </Col>
                 <Col xs={12} md={8}>
