@@ -1,15 +1,14 @@
-import {Navbar, Container, Nav, NavDropdown, Button, Offcanvas} from 'react-bootstrap';
+import {Navbar, Container, Nav, Button, Offcanvas} from 'react-bootstrap';
 import IsUserLogged from './IsUserLogged.jsx'
 import Search from './Search.jsx';
 import './Header.css'
-// import user from '../../Pages/Login.jsx'
 
 function Header(props) {
     return(
         <>
             <Navbar key="xxl" expand="xxl" fixed='top' className='navbar navbar-expand-lg navbar-light background'>
                 <Container>
-                    <Navbar.Brand>Car Deal</Navbar.Brand>
+                    <Navbar.Brand><a href='/' className='fw-bolder fs-4'>Car Deal</a></Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav"/>
                     <Navbar.Offcanvas 
                         id='offcanvasNavbar-expand-xxl'
