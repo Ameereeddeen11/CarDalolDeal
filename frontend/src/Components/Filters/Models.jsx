@@ -17,7 +17,6 @@ function Models(props) {
     return (
         brand && (
             <>
-                <Form.Label>Models</Form.Label>
                 <Form.Select>
                     <option value="">Choose model</option>
                     {/* {model[brand].map((options, index) => (

@@ -18,9 +18,8 @@ function Brands() {
     return (
         <>
             <Form.Group className='my-3'>
-                <Form.Label>Brand</Form.Label>
                 <Form.Select value={firstSelect} onChange={handleFirstSelect}>
-                    <option value="">Choose brand</option>
+                    <option value="">Choose Brand</option>
                     {loop}
                 </Form.Select>
             </Form.Group>
