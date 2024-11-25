@@ -43,7 +43,7 @@ function Home() {
     if (error) return <p>Error: {error.message}</p>; 
 
     const cards = car.map((cars) => (
-        <Col key={cars.id} xs={12} lg={3} lx={3} md={6} className="mb-4">
+        <Col key={cars.id} xs={12} lg={4} lx={3} md={6} className="mb-4">
             <Cards 
                 id={cars.id} 
                 brand={cars.brand} 
@@ -65,10 +65,10 @@ function Home() {
         <div className="container-fluit mt-5">
             <div className="mx-3">
                 <Row>
-                    <Col xs={12} sm={6} md={4} lg={2} style={{minHeight: '450px'}} className="mb-4 my-4">
+                    <Col xs={12} sm={6} md={4} lg={3} style={{minHeight: '450px'}} className="mb-4 my-4">
                         <Filters />
                     </Col>
-                    <Col className="mb-4 my-4" xs={12} sm={6} md={8} lg={10}>
+                    <Col className="mb-4 my-4" xs={12} sm={6} md={8} lg={9}>
                         <Row>
                             {cards}
                         </Row>

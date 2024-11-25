@@ -8,7 +8,7 @@ function Modals(props) {
 
     return (
         <>
-            <Button variant="primary" className="mx-1 my-2" style={{fontWeight:'bold', width: '10rem'}} onClick={handleShow}>Send Your Price</Button>
+            <Button variant="primary" className="mx-1 my-2" style={{fontWeight:'bold', width: '10rem'}} onClick={handleShow}>Your Price</Button>
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header>
                     <Modal.Title>{props.brand} {props.model}</Modal.Title>
