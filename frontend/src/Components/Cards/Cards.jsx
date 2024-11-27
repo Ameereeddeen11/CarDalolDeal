@@ -62,10 +62,6 @@ function Cards(props) {
             e.currentTarget.style.boxShadow = "none";
         }}
         style={{
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "space-between",
-            height: "100%",
             transition: 'transform 0.2s, box-shadow 0.2s',
             position: 'relative'
         }}
@@ -88,14 +84,30 @@ function Cards(props) {
             {props.brand} {props.model}
           </MDBCardTitle>
           <MDBCardText>
-                <i className="bi bi-calendar"> {props.made_at},</i>
-                <i className="bi bi-speedometer2 mx-2"> {props.tachometer}km,</i>
-                <i className="bi bi-gear"> {props.power}kW,</i>
-              {/* <br /> */}
-              {/* <i className="bi bi-geo-alt mx-2"> {props.place_of_sale},</i> */}
-              {/* <i className="bi bi-fuel-pump"> {props.fuel},</i> */}
-              {/* <br />x */}
-              {/* <i className="bi bi-joystick"> {props.gearbox}</i> */}
+            <i className="bi bi-calendar"> {props.made_at},</i>
+            <i className="bi bi-speedometer2 mx-2"> {props.tachometer}km,</i>
+            <i className="bi bi-gear"> {props.power}kW</i>
+            {/* <br /> */}
+            {/* <i className="bi bi-geo-alt mx-2"> {props.place_of_sale},</i> */}
+            {/* <i className="bi bi-fuel-pump"> {props.fuel},</i> */}
+            {/* <br />x */}
+            {/* <i className="bi bi-joystick"> {props.gearbox}</i> */}
+
+            <Row>
+              <Col className="d-flex justify-content-between align-items-center">
+                  {/* <h3>{props.price}</h3> */}
+                  <h3 className="my-3">
+                    <MDBBadge color='info' light>
+                      {props.price}
+                    </MDBBadge>
+                  </h3>
+                  <Modals
+                      brand={props.brand}
+                      model={props.model}
+                      price={props.price}
+                  />
+              </Col>
+            </Row>
           </MDBCardText>
           {/* <MDBCardText className=""> */}
               {/* <h5><MDBBadge pill light><p >Price: {props.price}</p></MDBBadge></h5> */}
@@ -104,18 +116,8 @@ function Cards(props) {
               </MDBBadge></h5> */}
           {/* </MDBCardText> */}
         </MDBCardBody>
-        <MDBCardFooter color='light'>
-            <Row>
-                <Col className="d-flex justify-content-between align-items-center">
-                    <h3>{props.price}</h3>
-                    <Modals
-                        brand={props.brand}
-                        model={props.model}
-                        price={props.price}
-                    />
-                </Col>
-            </Row>
-        </MDBCardFooter>
+        {/* <MDBCardFooter color='light'>
+        </MDBCardFooter> */}
     </MDBCard>
   );
 }

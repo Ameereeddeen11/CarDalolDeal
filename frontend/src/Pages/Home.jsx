@@ -53,9 +53,9 @@ function Home() {
                 made_at={cars.made_at} 
                 tachometer={cars.tachometer} 
                 power={cars.power} 
-                fuel={cars.fuel} 
-                gearbox={cars.gearbox} 
-                place_of_sale={cars.place_of_sale} 
+                // fuel={cars.fuel} 
+                // gearbox={cars.gearbox} 
+                // place_of_sale={cars.place_of_sale} 
                 saved={cars.saved}
             />
         </Col>

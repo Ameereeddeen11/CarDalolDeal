@@ -47,7 +47,7 @@ function Cards(props) {
                 <Col md={8}>
                     <Card.Body>
                         <Card.Title style={{
-                            fontSize: '1.5rem', 
+                            fontSize: '1rem', 
                             fontWeight: 'bold',
 
                         }}
