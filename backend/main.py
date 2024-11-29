@@ -81,31 +81,31 @@ async def read_root(db: db_dependency):
     seller = db.query(Seller).limit(6).all()
     offer = []
     for s in seller:
-        # user = db.query(User).filter(User.id == s.user_id).first() 
-        # users = {
-        #     "id": user.id,
-        #     "username": user.username,
-        #     "firstname": user.firstname,
-        #     "lastname": user.lastname,
-        #     "email": user.email
-        # }
+        user = db.query(User).filter(User.id == s.user_id).first() 
+        users = {
+            "id": user.id,
+            "username": user.username,
+            "firstname": user.firstname,
+            "lastname": user.lastname,
+            "email": user.email
+        }
         car = db.query(Car).filter(Car.id == s.car_id).first()
         cars = {
             "id": car.id,
-            # "name": car.name,
+            "name": car.name,
             "brand": car.brand.name,
             "model": car.model.name,
-            # "type": car.type.name,
-            # "fuel": car.fuel.name,
+            "type": car.type.name,
+            "fuel": car.fuel.name,
             "tachometer": car.tachometer,
             "made_at": car.made_at,
-            # "description": car.description,
-            # "car_body": car.car_body.name,
-            # "gearbox": car.gearbox.name,
+            "description": car.description,
+            "car_body": car.car_body.name,
+            "gearbox": car.gearbox.name,
             "power": car.power,
-            # "place_of_sale": car.place_of_sale,
-            # "country": car.country.name,
-            # "history": car.history
+            "place_of_sale": car.place_of_sale,
+            "country": car.country.name,
+            "history": car.history
         }
         image = db.query(Image).filter(Image.car_id == car.id).all()
         images = []
@@ -113,7 +113,7 @@ async def read_root(db: db_dependency):
             images.append(i.url)
         offer.append({
             "id": s.id,
-            # "user": users,
+            "user": users,
             "car": cars,
             "price": s.price,
             "min_price": s.min_price,
