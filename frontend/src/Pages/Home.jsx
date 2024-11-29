@@ -42,21 +42,21 @@ function Home() {
     if (loading) return <CardLoading />;
     if (error) return <p>Error: {error.message}</p>; 
 
-    const cards = car.map((cars) => (
-        <Col key={cars.id} xs={12} lg={4} lx={3} md={6} className="mb-4">
+    const cards = data.map((cars) => (
+        <Col key={cars.id} xs={12} lg={3} lx={3} md={6} className="mb-4">
             <Cards 
-                id={cars.id} 
-                brand={cars.brand} 
-                model={cars.model} 
+                id={cars.car.id} 
+                brand={cars.car.brand} 
+                model={cars.car.model} 
                 price={cars.price} 
                 min_price={cars.min_price} 
-                made_at={cars.made_at} 
-                tachometer={cars.tachometer} 
-                power={cars.power} 
+                made_at={cars.car.made_at} 
+                tachometer={cars.car.tachometer} 
+                power={cars.car.power} 
                 // fuel={cars.fuel} 
                 // gearbox={cars.gearbox} 
                 // place_of_sale={cars.place_of_sale} 
-                saved={cars.saved}
+                saved={cars.car.saved}
             />
         </Col>
     ));
@@ -65,10 +65,10 @@ function Home() {
         <div className="container-fluit mt-5">
             <div className="mx-3">
                 <Row>
-                    <Col xs={12} sm={6} md={4} lg={3} style={{minHeight: '450px'}} className="mb-4 my-4">
+                    <Col xs={12} sm={6} md={4} lg={2} style={{minHeight: '450px'}} className="mb-4 my-4">
                         <Filters />
                     </Col>
-                    <Col className="mb-4 my-4" xs={12} sm={6} md={8} lg={9}>
+                    <Col className="mb-4 my-4" xs={12} sm={6} md={8} lg={10}>
                         <Row>
                             {cards}
                         </Row>

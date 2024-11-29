@@ -52,7 +52,7 @@ function Cards(props) {
 
   return (
     <MDBCard 
-        className='h-100 shadow-3-strong'
+        className='shadow-3-strong'
         onMouseEnter={(e) => {
             e.currentTarget.style.transform = "scale(1.02)";
             e.currentTarget.style.boxShadow = "0 4px 20px rgba(0,0,0,0.1)";
@@ -63,7 +63,8 @@ function Cards(props) {
         }}
         style={{
             transition: 'transform 0.2s, box-shadow 0.2s',
-            position: 'relative'
+            position: 'relative',
+            width: '21rem',
         }}
     >
         <MDBCardImage
@@ -98,7 +99,7 @@ function Cards(props) {
                   {/* <h3>{props.price}</h3> */}
                   <h3 className="my-3">
                     <MDBBadge color='info' light>
-                      {props.price}
+                      {props.price} Kč
                     </MDBBadge>
                   </h3>
                   <Modals
