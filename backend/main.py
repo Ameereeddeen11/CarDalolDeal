@@ -117,7 +117,7 @@ async def read_root(db: db_dependency):
             "car": cars,
             "price": s.price,
             "min_price": s.min_price,
-            # "sold": s.sold,
+            "sold": s.sold,
             "images": images
         })
     return offer

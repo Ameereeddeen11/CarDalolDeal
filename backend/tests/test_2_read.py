@@ -3,32 +3,32 @@ from .test_1_create import login_user, client
 get_data = [
     {
         'id': 1, 
-        'user': {
-            'id': 1,
-            'username': 'testusername', 
-            'firstname': 'testfirstname',
-            'lastname': 'testlastname',
-            'email': 'test@test.com'
-        }, 
+        # 'user': {
+        #     'id': 1,
+        #     'username': 'testusername', 
+        #     'firstname': 'testfirstname',
+        #     'lastname': 'testlastname',
+        #     'email': 'test@test.com'
+        # }, 
         'price': 9700000, 
         'min_price': 9500000, 
         'sold': False, 
         'car': {
             'id': 1,
-            'name': 'hi',
+            # 'name': 'hi',
             'brand': 'Mercedes', 
             'model': 'Class G', 
-            'type': 'Personal', 
-            'fuel': 'Diesel', 
+            # 'type': 'Personal', 
+            # 'fuel': 'Diesel', 
             'tachometer': 50, 
             'made_at': 2022, 
-            'description': 'hi',
-            'car_body': 'SUV', 
-            'gearbox': 'Automatic', 
+            # 'description': 'hi',
+            # 'car_body': 'SUV', 
+            # 'gearbox': 'Automatic', 
             'power': 588, 
-            'place_of_sale': 'hi', 
-            'country': 'Germany', 
-            'history': 'hi'
+            # 'place_of_sale': 'hi', 
+            # 'country': 'Germany', 
+            # 'history': 'hi'
         },
         'images': [
             'test_image.jpg'
