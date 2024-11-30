@@ -1,15 +1,20 @@
 import { Container, Row, Col, Button } from "react-bootstrap";
-import Cards from '../Components/Cards.jsx';
+// import Cards from '../Components/Cards.jsx';
 import Filters from "../Components/Filters/Filters.jsx";
 import React, { useState, useEffect } from "react";
 import CardLoading from "../Components/Loading/CardLoading.jsx";
 import './Home.css'
+import Cards from '../Components/Cards/Cards.jsx';
 
-// const car = [
-//     { id: 1, title: 'BMW I8', text: 'My favorite car', price: '$250000', image: './image/bmwi81.jpg' },
-//     { id: 2, title: 'Mercedes-Benz S class', text: 'My second favorite car', price: '$250000', image: 'bmwi81'},
-//     { id: 3, title: 'BMW I8', text: 'My favorite car', price: '$250000', image: 'bmwi81' },
-// ];
+const car = [
+    { id: 1, brand: 'BMW', model: 'I8', price: '$250000', min_price: '$250000', made_at: '2018', tachometer: '10000', power: '200', fuel: 'Gasoline', gearbox: 'Automatic', place_of_sale: 'Tbilisi', saved: true },
+    { id: 2, brand: 'Mercedes-Benz', model: 'S class', price: '$250000', min_price: '$250000', made_at: '2018', tachometer: '10000', power: '200', fuel: 'Gasoline', gearbox: 'Automatic', place_of_sale: 'Tbilisi', saved: false },
+    { id: 3, brand: 'BMW', model: 'I8', price: '$250000', min_price: '$250000', made_at: '2018', tachometer: '10000', power: '200', fuel: 'Gasoline', gearbox: 'Automatic', place_of_sale: 'Tbilisi', saved: true },
+    { id: 4, brand: 'BMW', model: 'I8', price: '$250000', min_price: '$250000', made_at: '2018', tachometer: '10000', power: '200', fuel: 'Gasoline', gearbox: 'Automatic', place_of_sale: 'Tbilisi', saved: false },
+    { id: 5, brand: 'BMW', model: 'I8', price: '$250000', min_price: '$250000', made_at: '2018', tachometer: '10000', power: '200', fuel: 'Gasoline', gearbox: 'Automatic', place_of_sale: 'Tbilisi', saved: true },
+    { id: 6, brand: 'BMW', model: 'I8', price: '$250000', min_price: '$250000', made_at: '2018', tachometer: '10000', power: '200', fuel: 'Gasoline', gearbox: 'Automatic', place_of_sale: 'Tbilisi', saved: false },
+    { id: 7, brand: 'BMW', model: 'I8', price: '$250000', min_price: '$250000', made_at: '2018', tachometer: '10000', power: '200', fuel: 'Gasoline', gearbox: 'Automatic', place_of_sale: 'Tbilisi', saved: true }
+]
 
 function Home() {
     const [data, setData] = useState(null);
@@ -36,10 +41,11 @@ function Home() {
 
     if (loading) return <CardLoading />;
     if (error) return <p>Error: {error.message}</p>; 
+
     const cards = data.map((cars) => (
-        <Col xs={12} key={cars.id} className="mb-4">
+        <Col key={cars.id} xs={12} lg={3} lx={3} md={6} className="mb-4">
             <Cards 
-                id={cars.id} 
+                id={cars.car.id} 
                 brand={cars.car.brand} 
                 model={cars.car.model} 
                 price={cars.price} 
@@ -47,30 +53,32 @@ function Home() {
                 made_at={cars.car.made_at} 
                 tachometer={cars.car.tachometer} 
                 power={cars.car.power} 
-                fuel={cars.car.fuel} 
-                gearbox={cars.car.gearbox} 
-                place_of_sale={cars.car.place_of_sale} 
-                saved={true}
+                // fuel={cars.fuel} 
+                // gearbox={cars.gearbox} 
+                // place_of_sale={cars.place_of_sale} 
+                saved={cars.car.saved}
             />
         </Col>
     ));
 
     return (
-        <Container className="mt-5">
-            <Row>
-                <Col xs={12} md={4} className="mb-4 my-4">
-                    <Filters />
-                </Col>
-                <Col xs={12} md={8}>
-                    <Row>
-                        {cards}
-                    </Row>
-                </Col>
-            </Row>
-            <Row className="justify-content-center">
-                <Button variant="primary" style={{width: '25%'}}>More</Button>
-            </Row>
-        </Container>
+        <div className="container-fluit mt-5">
+            <div className="mx-3">
+                <Row>
+                    <Col xs={12} sm={6} md={4} lg={2} style={{minHeight: '450px'}} className="mb-4 my-4">
+                        <Filters />
+                    </Col>
+                    <Col className="mb-4 my-4" xs={12} sm={6} md={8} lg={10}>
+                        <Row>
+                            {cards}
+                        </Row>
+                    </Col>
+                </Row>
+                <Row className="justify-content-center">
+                    <Button variant="primary" style={{width: '25%'}}>More</Button>
+                </Row>
+            </div>
+        </div>
     );
 }
 

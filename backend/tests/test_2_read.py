@@ -55,7 +55,42 @@ def test_read_user():
 def test_read_main():
     response = client.get("/")
     assert response.status_code == 200
-    assert response.json() == get_data
+    assert response.json() == [
+    {
+        'id': 1, 
+        # 'user': {
+        #     'id': 1,
+        #     'username': 'testusername', 
+        #     'firstname': 'testfirstname',
+        #     'lastname': 'testlastname',
+        #     'email': 'test@test.com'
+        # }, 
+        'price': 9700000, 
+        'min_price': 9500000, 
+        'sold': False, 
+        'car': {
+            'id': 1,
+            # 'name': 'hi',
+            'brand': 'Mercedes', 
+            'model': 'Class G', 
+            # 'type': 'Personal', 
+            # 'fuel': 'Diesel', 
+            'tachometer': 50, 
+            'made_at': 2022, 
+            # 'description': 'hi',
+            # 'car_body': 'SUV', 
+            # 'gearbox': 'Automatic', 
+            'power': 588, 
+            'place_of_sale': 'hi', 
+            # 'country': 'Germany', 
+            # 'history': 'hi'
+        },
+        'images': [
+            'test_image.jpg'
+        ]
+    }
+]
+
 
 # Test advertisement from users with id 1
 def test_read_advertise_seller():
