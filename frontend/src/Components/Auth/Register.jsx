@@ -113,7 +113,10 @@ function Register() {
                 onChange={(e) => setPassword(e.target.value)}
             />
             <MDBCheckbox name='flexCheck' id='flexCheckDefault' className='mb-4' label='Remember password' />
-            <p className="text-center my-3">Have you account? <MDBBtn className='mx-2' color='link' rippleColor='light' onClick={handleLogin}>Login</MDBBtn></p>
+            <div className="d-flex flex-row">
+                <p className="text-center my-3">Have you account? </p>
+                <MDBBtn className='mx-2' color='link' rippleColor='light' onClick={handleLogin}>Login</MDBBtn>
+            </div>
             <hr className="" />
             <MDBBtn size='lg' onClick={handleSubmit}>
                 Register

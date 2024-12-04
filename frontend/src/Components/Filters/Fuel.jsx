@@ -10,7 +10,6 @@ function Fuel() {
 
     return (
         <Form.Group className='my-3'>
-            <Form.Label>Fuel</Form.Label>
             <Form.Select>
                 <option value="Choose Fuel">Choose Fuel</option>
                 {loopOption}

@@ -10,7 +10,6 @@ function Category() {
 
     return (
         <Form.Group>
-            <Form.Label>Category</Form.Label>
             <Form.Select>
                 <option value="Choose Category">Choose Category</option>
                 {loopCategory}

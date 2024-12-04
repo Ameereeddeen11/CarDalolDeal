@@ -6,6 +6,7 @@ import {
     MDBIcon,
     MDBCheckbox
   } from 'mdb-react-ui-kit';
+import { Button } from "react-bootstrap";
 
 function Login() {
     const [username, setUsername] = useState('');
@@ -80,7 +81,10 @@ function Login() {
             <MDBBtn size='lg' onClick={handleSubmit}>
                 Login
             </MDBBtn>
-            <p className="text-center my-3">Haven't you registered? <MDBBtn className='mx-2' color='link' rippleColor='light' onClick={handleRegister}>Register</MDBBtn></p>
+            <div className="d-flex flex-row my-2">
+                <p className="text-center my-3">Haven't you registered? </p>
+                <MDBBtn className='mx-2' color='link' rippleColor='light' onClick={handleRegister}>Register</MDBBtn>
+            </div>
             <hr className="" />
             <MDBBtn className="mb-2 w-100" size="lg" style={{backgroundColor: '#dd4b39'}}>
                 <MDBIcon fab icon="google" className="mx-2"/>
