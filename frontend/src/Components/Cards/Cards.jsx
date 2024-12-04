@@ -50,6 +50,8 @@ function Cards(props) {
     </MDBBtn>
   );
 
+  const price = props.price.toLocaleString('cs-CZ').replace(/,/g, ' ');
+
   return (
     <MDBCard 
         className='shadow-3-strong'
@@ -64,7 +66,7 @@ function Cards(props) {
         style={{
             transition: 'transform 0.2s, box-shadow 0.2s',
             position: 'relative',
-            width: '21rem',
+            width: '22rem',
         }}
     >
         <MDBCardImage
@@ -99,13 +101,13 @@ function Cards(props) {
                   {/* <h3>{props.price}</h3> */}
                   <h3 className="my-3">
                     <MDBBadge color='info' light>
-                      {props.price} Kč
+                      {price} Kč
                     </MDBBadge>
                   </h3>
                   <Modals
                       brand={props.brand}
                       model={props.model}
-                      price={props.price}
+                      price={price}
                   />
               </Col>
             </Row>
